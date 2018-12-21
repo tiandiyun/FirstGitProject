@@ -1,5 +1,5 @@
-#include "TestMove.h"
 #include "stdafx.h"
+#include "TestMove.h"
 #include <xutility>
 #include <iostream>
 

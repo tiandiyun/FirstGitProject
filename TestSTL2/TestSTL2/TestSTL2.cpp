@@ -20,6 +20,7 @@
 #include <dbghelp.h>  
 #include <thread>
 #include <memory>
+#include <array>
 #pragma comment( lib, "dbghelp" )  
 
 #include "RandomChoice.h"
@@ -114,7 +115,7 @@ void TestAutoAdd()
 class A
 {
 public:
-    A() : param1(100)
+    A(int v=100) : param1(v)
     {
         std::cout << "A()" << std::endl;
     }
@@ -124,22 +125,22 @@ public:
         std::cout << "A(&)" << std::endl;
     }
 
+    A(const A&& a)
+    {
+        std::cout << "A(const A&& a)" << std::endl;
+    }
+
     A& operator=(const A& a)
     {
         std::cout << "operator=" << std::endl;
         return *this;
     }
 
-    A(const A&& a)
-    {
-        std::cout << "A(const A&& a)" << std::endl;
-    }
-
-    A& operator=(const A&& a)
+    /*A& operator=(const A&& a)
     {
         std::cout << "A& operator=(const A&& a)" << std::endl;
         return *this;
-    }
+    }*/
 
     int operator-(const A& a)
     {
@@ -162,6 +163,10 @@ public:
         A a;
         return a;
     }
+
+    void SetParam1(int v) { param1 = param1; }
+
+    int GetParam1() { return param1; }
 
 private:
     int param1;
@@ -650,9 +655,29 @@ void TestMap()
     TestOverRide(intMap);
     TestOverRide(floatMap);*/
 
-    std::map<int, int> intMap;
+    /*std::map<int, int> intMap;
+    intMap[0] -= 10;*/
 
-    intMap[0] -= 10;
+    /*std::map<std::string, std::string> kv;
+    kv["aa"] = "aa";
+    kv["bb"] = "bb";
+    kv["cc"] = "cc";
+    std::cout << kv["cc"] << std::endl;*/
+
+    std::array<std::shared_ptr<A>, 5> AMap;
+    
+    AMap[0] = std::shared_ptr<A>(new A(10));
+    AMap[1] = std::shared_ptr<A>(new A(20));
+    std::cout << "-------------" << std::endl;
+
+    for (std::shared_ptr<A>& a : AMap)
+    {
+        if (a)
+        {
+            a = nullptr;
+        }
+    }
+    
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -664,6 +689,10 @@ int _tmain(int argc, _TCHAR* argv[])
     /*TestDelSharePtr();*/
 
     TestMap();
+
+    /*TestTempRef();*/
+
+    
 
     system("pause"); 
     return EXIT_SUCCESS;
