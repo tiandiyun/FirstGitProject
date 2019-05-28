@@ -12,95 +12,26 @@
 #include <deque>
 #include <algorithm>
 #include <cstdio>
-
+#include <stdio.h>
 #include "DataStruct.h"
 #include "TestMove.h"
+#include "AutoPtrInherit.h"
+#include "STLSrc/TestDeque.h"
+#include "STLSrc/TypeRef.h"
+#include "STLSrc/Traverse.h"
+#include "STLSrc/TestTemplate.h"
+#include "STLSrc/TestC11Time.h"
+#include "STLSrc/TestSet.h"
+#include "STLSrc/TestVector.h"
+#include "STLSrc/TestShuffle.h"
+#include "STLSrc/TestString.h"
+
 
 std::string getStr()
 {
     std::string temp = "124432";
     return temp;
 }
-
-/*
-struct Fish
-{
-Fish(int _id, int _type, int _kind, int _worth, float _ls)
-: id(_id), type(_type), kind(_kind), worth(_worth), leftSeconds(_ls)
-{
-std::cout << "use initialize-list contruct" << std::endl;
-}
-int id{ 0 };
-int type{ 0 }; // 类型
-int kind{ 0 }; // 种类
-int worth{ 0 }; // 倍数
-float leftSeconds{ 0.0f }; // 剩余存活时间
-};*/
-
-struct Fish
-{
-    Fish()
-    {
-        std::cout << "Fish()" << std::endl;
-    }
-
-    Fish(const Fish& fish)
-    {
-        id = fish.id;
-        type = fish.type;
-        kind = fish.kind;
-        worth = fish.worth;
-        std::cout << "Fish(const Fish& fish)" << std::endl;
-    }
-
-    Fish(int i, int t, int k, int w, float s)
-        : id(i), type(t), kind(k), worth(w), leftSeconds(s)
-    {
-        std::cout << "Fish(int i, int t, int k, int w, float s)" << std::endl;
-    }
-
-    Fish& operator=(const Fish& fish)
-    {
-        id = fish.id;
-        type = fish.type;
-        kind = fish.kind;
-        worth = fish.worth;
-        std::cout << "operator=" << std::endl;
-        return *this;
-    };
-
-    Fish& operator +=(const Fish& other)
-    {
-        worth += other.worth;
-        return *this;
-    }
-
-    Fish operator +(const Fish& other)
-    {
-        Fish tempFish = *this;
-        tempFish.worth += other.worth;
-        return tempFish;
-    }
-
-    ~Fish()
-    {
-        std::cout << "~Fish()" << std::endl;
-    }
-
-    Fish& operator()()
-    {
-        return *this;
-    }
-
-    int id{ 1 };
-    int type{ 2 }; // 类型
-    int kind{ 3 }; // 种类
-    int worth{ 4 }; // 倍数
-    float leftSeconds{ 5.f }; // 剩余存活时间
-};
-
-typedef std::shared_ptr<Fish> FishPtr;
-typedef std::list<FishPtr> FishList;
 
 Fish getFish()
 {
@@ -129,36 +60,6 @@ void TestStoreStructWithString()
         memcpy(&ffs, dstStr.c_str(), dstStr.size());
         int i = 0;
     }
-}
-
-void TestSharePtrInSTL()
-{
-    FishList fishes;
-    for (int i = 0; i < 5; ++i)
-    {
-        fishes.push_back(FishPtr(new Fish()));
-    }
-
-    for (FishPtr& fish : fishes)
-    {
-        Fish& fs = *fish;
-        int id = fish->id;
-        printf("%d", id);
-    }
-
-    std::map<int, Fish> fishMap;
-    Fish f;
-    fishMap[0] = f;
-}
-
-int get1()
-{
-    return 1;
-}
-
-int get2()
-{
-    return 2;
 }
 
 void printAll(int i1, int i2)
@@ -199,8 +100,8 @@ void TestMapAccess()
     {
         it->second += 3;
     }
-    
-    for (auto& d: data)
+
+    for (auto& d : data)
     {
         d.second += 2;
     }
@@ -210,7 +111,7 @@ void TestMapAccess()
     /*auto it = data.begin();
     while (it != data.end())
     {
-        it = data.erase(it);
+    it = data.erase(it);
     }*/
 }
 
@@ -249,7 +150,7 @@ void TestVectorEmplace()
     {
         int i = 0;
     }
-    
+
     fishVec.clear();
     for (int i = 0; i < 3; ++i)
     {
@@ -284,69 +185,26 @@ void TestMultiMap()
 
 void TestSet()
 {
-    std::set<int> setInteger;
-    setInteger.clear();
+    std::set<int> intSet;
+    intSet.clear();
 
-    setInteger.insert(1);
-    setInteger.insert(2);
-    setInteger.insert(1);
+    intSet.insert(4);
+    intSet.insert(3);
+    intSet.insert(2);
+    intSet.insert(1);
 
-    for (int a : setInteger)
+    for (int a : intSet)
     {
         std::cout << a << std::endl;
     }
-}
 
-void TestListEmplace()
-{
-    std::list<Fish> fishList;
-    Fish fs;
-    fs.id = 10;
-    fs.kind = 20;
-    fs.leftSeconds = 30;
-    fs.type = 40;
-    fs.leftSeconds = 50;
-    //fishList.emplace_back(fs);
-    fishList.push_front(fs);
-    std::cout << "-------------" << std::endl;
-    fishList.pop_back();
+    int data = intSet.erase(3);
+    std::cout << data << std::endl;
 
-    for (int i = 0; i < 10; ++i)
-    {
-        fishList.push_back(Fish());
-    }
+    data = intSet.erase(2);
+    std::cout << data << std::endl;
 
-    std::list<Fish>::iterator it = fishList.begin();
-}
-
-void TestDQueueAndVectorEmplace()
-{
-    std::deque<int> intDQ;
-    for (int i = 0; i < 10; ++i)
-    {
-        intDQ.emplace_front(i);
-    }
-    for_each(intDQ.begin(), intDQ.end(), [](int i){ std::cout << i << ","; });
-    std::cout << std::endl;
-
-    std::vector<int> intVec;
-    for (int i = 0; i < 10; ++i)
-    {
-        intVec.emplace(intVec.begin(), i);
-    }
-    //for_each(intVec.begin(), intVec.end(), [](int i){ std::cout << i << ","; });
-    for (auto i : intVec)
-    {
-        std::cout << i << ",";
-    }
-    std::cout << std::endl;
-}
-
-void TestRefByRef()
-{
-    int src = 10;
-    int& ref1 = src;
-    int& ref2 = ref1;
+    auto d = intSet.find(4);
 }
 
 void TestAlign()
@@ -374,37 +232,33 @@ void TestScanf()
     sscanf_s("2006:03:18  -   2006:04:18", "%s - %s", sztime1, sizeof(sztime1) - 1, sztime2, sizeof(sztime2) - 1);
 }
 
-class TestGun
+void TestOperatorOverFlow()
 {
-public:
-    TestGun()
+    unsigned short a = 0xffff;
+    unsigned short b = 0xfffe;
+    unsigned short c = 0x0002;
+
+    if (a < b * c)
     {
-        pp = new char[30];
-        strcpy_s(pp, 30, "hahah");
+        std::cout << "a < b * c" << std::endl;
     }
-
-    ~TestGun()
+    else
     {
-        if (pp)
-        {
-            delete[] pp;
-        }
+        std::cout << "a >= b * c" << std::endl;
     }
+}
 
-    char* getCH()
-    {
-        return pp;
-    }
 
-public:
-    char* pp{ nullptr };
-};
-
-void TestGetAutoPointer()
+void TestStaticLocalVariable1()
 {
-    TestGun gun;
-    const auto gp = gun.getCH();
-    auto gpp = gun.getCH();
+    static int a = 1;
+    std::cout << "&a : " << std::ios::hex << &a << ", a = " << std::ios::dec << a << std::endl;
+}
+
+void TestStaticLocalVariable2()
+{
+    static int a = 2;
+    std::cout << "&a : " << std::ios::hex << &a << ", a = " << std::ios::dec << a << std::endl;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -415,15 +269,82 @@ int _tmain(int argc, _TCHAR* argv[])
 
     //useFish(getFish());
 
-    //printAll(get1(), get2());
-
     //TestMapAccess();
 
     //TestAlign();
 
     //TestGetAutoPointer();
 
-    TestMoveString();
+    //TestMoveString();
+
+    //TestFindIf();
+
+    //TestSet();
+
+    //TestVecEmplace();
+
+    //TestListEmplace();
+
+    //BasePtrToDerive();
+
+    //TestDeque::CompareTraversal();
+
+    //TestOperatorOverFlow();
+
+    //TestDecltype();
+
+    //TestDeclval();
+
+    //TestTypeInfer();
+
+    //ListTraverse(100);
+    //VectorTraverse(100);
+
+    //TestSection();
+
+    //TestTemplate();
+
+    //TestRep();
+
+    //TestUnorderedSet();
+
+    //EmplaceToSet();
+
+    //TestAttribute();
+
+    //TestRandomPick();
+
+    //TestRandomWeight();
+
+    //TestIteratorTraits();
+
+    //TestFindIfInVector();
+
+    //ShuffleUnorderedSet();
+
+    /*int count = 100000;
+
+    ShuffleVectorWithLibrary(count);
+
+    ShuffleVectorFisherYates(count);
+
+    ShuffleVectorKnuthDurstenfeld(count);
+
+    ShuffleVectorInsideOut(count);*/
+
+    /*TestStaticLocalVariable1();
+    TestStaticLocalVariable2();*/
+
+    // TraversalEraseSet();
+    
+    /*char * const * (*next)(int, int(*)(char, short)) = nullptr;
+
+    //void(int) * signal(int sig, void(*func)(int));
+    void(*signal(int sig, void(*func)(int)))(int);*/
+
+    //std::cout << ExtVal2 << std::endl;
+
+    
 
     system("pause");
 

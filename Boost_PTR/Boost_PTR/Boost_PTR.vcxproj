@@ -88,6 +88,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="testDataTime.h" />
     <ClInclude Include="test_boost_signal.h" />
+    <ClInclude Include="test_boost_time.h" />
     <ClInclude Include="test_thread.h" />
   </ItemGroup>
   <ItemGroup>
@@ -101,6 +102,7 @@
     </ClCompile>
     <ClCompile Include="testDataTime.cpp" />
     <ClCompile Include="test_boost_signal.cpp" />
+    <ClCompile Include="test_boost_time.cpp" />
     <ClCompile Include="test_thread.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

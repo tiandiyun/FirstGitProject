@@ -13,6 +13,7 @@
 #include "jsonParser.h"
 #include "testDataTime.h"
 #include "AutoPtrInherit.h"
+#include "test_boost_time.h"
 
 class A
 {
@@ -104,9 +105,12 @@ int _tmain(int argc, _TCHAR* argv[])
 
     /*CompareDate();*/
 
-    TestAutoPtrInherit();
+    //TestAutoPtrInherit();
+
+    PtimeFromString();
 
 	getchar();
+
 	return 0;
 }
 

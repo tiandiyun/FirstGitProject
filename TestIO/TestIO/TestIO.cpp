@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <stdlib.h>
+#include "TestFileIO.h"
 
 void TestGetC()
 {
@@ -14,7 +15,9 @@ void TestGetC()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    TestGetC();
+    //TestGetC();
+
+    TestCPPOpenFile();
 
     system("pause");
 	return 0;

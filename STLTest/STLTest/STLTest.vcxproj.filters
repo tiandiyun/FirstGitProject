@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="STLSrc">
+      <UniqueIdentifier>{8689c2d5-2711-41ce-919b-44b72adb866d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -33,6 +36,51 @@
     <ClInclude Include="TestMove.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="AutoPtrInherit.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestDeque.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\Timer.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TypeRef.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\Traverse.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestTemplate.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestC11Time.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestSet.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\CustomRandom.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\Attribute.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="标头.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestVector.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestSharePtr.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestShuffle.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestString.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,6 +91,42 @@
     </ClCompile>
     <ClCompile Include="TestMove.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="AutoPtrInherit.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestDeque.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TypeRef.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\Traverse.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestC11Time.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestSet.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestTemplate.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\CustomRandom.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestVector.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestSharePtr.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestShuffle.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestString.cpp">
+      <Filter>STLSrc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

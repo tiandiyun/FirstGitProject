@@ -79,17 +79,44 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoPtrInherit.h" />
     <ClInclude Include="DataStruct.h" />
     <ClInclude Include="DataStructEx.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="STLSrc\Attribute.h" />
+    <ClInclude Include="STLSrc\TestC11Time.h" />
+    <ClInclude Include="STLSrc\TestDeque.h" />
+    <ClInclude Include="STLSrc\CustomRandom.h" />
+    <ClInclude Include="STLSrc\TestSet.h" />
+    <ClInclude Include="STLSrc\TestSharePtr.h" />
+    <ClInclude Include="STLSrc\TestShuffle.h" />
+    <ClInclude Include="STLSrc\TestString.h" />
+    <ClInclude Include="STLSrc\TestTemplate.h" />
+    <ClInclude Include="STLSrc\TestVector.h" />
+    <ClInclude Include="STLSrc\Timer.h" />
+    <ClInclude Include="STLSrc\Traverse.h" />
+    <ClInclude Include="STLSrc\TypeRef.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestMove.h" />
+    <ClInclude Include="标头.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AutoPtrInherit.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="STLSrc\TestC11Time.cpp" />
+    <ClCompile Include="STLSrc\TestDeque.cpp" />
+    <ClCompile Include="STLSrc\CustomRandom.cpp" />
+    <ClCompile Include="STLSrc\TestSet.cpp" />
+    <ClCompile Include="STLSrc\TestSharePtr.cpp" />
+    <ClCompile Include="STLSrc\TestShuffle.cpp" />
+    <ClCompile Include="STLSrc\TestString.cpp" />
+    <ClCompile Include="STLSrc\TestTemplate.cpp" />
+    <ClCompile Include="STLSrc\TestVector.cpp" />
+    <ClCompile Include="STLSrc\Traverse.cpp" />
+    <ClCompile Include="STLSrc\TypeRef.cpp" />
     <ClCompile Include="STLTest.cpp" />
     <ClCompile Include="TestMove.cpp" />
   </ItemGroup>
