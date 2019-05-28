@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestAlgorithm", "TestAlgorithm\TestAlgorithm.vcxproj", "{CECDBF1D-A725-4B22-AEFD-75E797436B2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CECDBF1D-A725-4B22-AEFD-75E797436B2A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CECDBF1D-A725-4B22-AEFD-75E797436B2A}.Debug|Win32.Build.0 = Debug|Win32
+		{CECDBF1D-A725-4B22-AEFD-75E797436B2A}.Release|Win32.ActiveCfg = Release|Win32
+		{CECDBF1D-A725-4B22-AEFD-75E797436B2A}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
