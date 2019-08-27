@@ -55,3 +55,5 @@ struct BaseTemplate<int>
 void TestTemplate();
 
 void TestRefByRef();
+
+void TestRefWrapper();

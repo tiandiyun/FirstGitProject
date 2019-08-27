@@ -82,17 +82,25 @@
     <ClInclude Include="AutoPtrInherit.h" />
     <ClInclude Include="DataStruct.h" />
     <ClInclude Include="DataStructEx.h" />
+    <ClInclude Include="FunctionParams.h" />
+    <ClInclude Include="MultInherit.h" />
+    <ClInclude Include="LazySingleton.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="STLSrc\Attribute.h" />
+    <ClInclude Include="STLSrc\TemplateSpecialization.h" />
     <ClInclude Include="STLSrc\TestC11Time.h" />
     <ClInclude Include="STLSrc\TestDeque.h" />
     <ClInclude Include="STLSrc\CustomRandom.h" />
+    <ClInclude Include="STLSrc\TestException.h" />
+    <ClInclude Include="STLSrc\TestMap.h" />
     <ClInclude Include="STLSrc\TestSet.h" />
     <ClInclude Include="STLSrc\TestSharePtr.h" />
     <ClInclude Include="STLSrc\TestShuffle.h" />
     <ClInclude Include="STLSrc\TestString.h" />
     <ClInclude Include="STLSrc\TestTemplate.h" />
+    <ClInclude Include="STLSrc\TestTuple.h" />
     <ClInclude Include="STLSrc\TestVector.h" />
+    <ClInclude Include="STLSrc\TestVirtualFunc.h" />
     <ClInclude Include="STLSrc\Timer.h" />
     <ClInclude Include="STLSrc\Traverse.h" />
     <ClInclude Include="STLSrc\TypeRef.h" />
@@ -102,19 +110,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AutoPtrInherit.cpp" />
+    <ClCompile Include="FunctionParams.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="STLSrc\TemplateSpecialization.cpp" />
     <ClCompile Include="STLSrc\TestC11Time.cpp" />
     <ClCompile Include="STLSrc\TestDeque.cpp" />
     <ClCompile Include="STLSrc\CustomRandom.cpp" />
+    <ClCompile Include="STLSrc\TestException.cpp" />
+    <ClCompile Include="STLSrc\TestMap.cpp" />
     <ClCompile Include="STLSrc\TestSet.cpp" />
     <ClCompile Include="STLSrc\TestSharePtr.cpp" />
     <ClCompile Include="STLSrc\TestShuffle.cpp" />
     <ClCompile Include="STLSrc\TestString.cpp" />
     <ClCompile Include="STLSrc\TestTemplate.cpp" />
+    <ClCompile Include="STLSrc\TestTuple.cpp" />
     <ClCompile Include="STLSrc\TestVector.cpp" />
+    <ClCompile Include="STLSrc\TestVirtualFunc.cpp" />
     <ClCompile Include="STLSrc\Traverse.cpp" />
     <ClCompile Include="STLSrc\TypeRef.cpp" />
     <ClCompile Include="STLTest.cpp" />

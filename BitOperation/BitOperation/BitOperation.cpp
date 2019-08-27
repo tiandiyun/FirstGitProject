@@ -9,7 +9,14 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    ScanStructPadding();
+    //ScanStructPadding();
+    
+    //CheckBaseTypeAddr();
+
+    //CheckStructDataOffset();
+
+    int idx = size2binidx(96);
+
     system("pause");
 	return 0;
 }

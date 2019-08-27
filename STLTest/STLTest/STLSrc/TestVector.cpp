@@ -2,6 +2,7 @@
 #include "TestVector.h"
 #include <algorithm>
 #include <iostream>
+#include "../DataStruct.h"
 
 void TestFindIfInVector()
 {
@@ -16,4 +17,19 @@ void TestFindIfInVector()
     auto endIt = std::find_if(vec.begin(), vec.end(), [&u](int& d) { return d >= u; });
 
     std::cout << *begIt << ", " << *endIt << std::endl;
+}
+
+void TestEmplace()
+{
+    std::vector<Base> baseVec;
+    Base b1(1, 1);
+    Base b2(2, 2);
+
+    std::cout << "-----------------------------" << std::endl;
+
+    baseVec.emplace_back(b1);
+    std::cout << "-----------------------------" << std::endl;
+
+    baseVec.emplace_back(std::move(b2));
+    std::cout << "-----------------------------" << std::endl;
 }

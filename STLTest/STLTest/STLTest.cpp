@@ -25,6 +25,12 @@
 #include "STLSrc/TestVector.h"
 #include "STLSrc/TestShuffle.h"
 #include "STLSrc/TestString.h"
+#include "STLSrc/TestSharePtr.h"
+#include "STLSrc/TemplateSpecialization.h"
+#include "STLSrc/TestMap.h"
+#include "STLSrc/TestTuple.h"
+#include "STLSrc/TestException.h"
+#include "STLSrc/TestVirtualFunc.h"
 
 
 std::string getStr()
@@ -255,98 +261,10 @@ void TestStaticLocalVariable1()
     std::cout << "&a : " << std::ios::hex << &a << ", a = " << std::ios::dec << a << std::endl;
 }
 
-void TestStaticLocalVariable2()
-{
-    static int a = 2;
-    std::cout << "&a : " << std::ios::hex << &a << ", a = " << std::ios::dec << a << std::endl;
-}
-
 int _tmain(int argc, _TCHAR* argv[])
 {
-    //std::string& st = getStr();
-
-    //Fish* fs = new Fish(){1, 2, 3, 4, 5.f};
-
-    //useFish(getFish());
-
-    //TestMapAccess();
-
-    //TestAlign();
-
-    //TestGetAutoPointer();
-
-    //TestMoveString();
-
-    //TestFindIf();
-
-    //TestSet();
-
-    //TestVecEmplace();
-
-    //TestListEmplace();
-
-    //BasePtrToDerive();
-
-    //TestDeque::CompareTraversal();
-
-    //TestOperatorOverFlow();
-
-    //TestDecltype();
-
-    //TestDeclval();
-
-    //TestTypeInfer();
-
-    //ListTraverse(100);
-    //VectorTraverse(100);
-
-    //TestSection();
-
-    //TestTemplate();
-
-    //TestRep();
-
-    //TestUnorderedSet();
-
-    //EmplaceToSet();
-
-    //TestAttribute();
-
-    //TestRandomPick();
-
-    //TestRandomWeight();
-
-    //TestIteratorTraits();
-
-    //TestFindIfInVector();
-
-    //ShuffleUnorderedSet();
-
-    /*int count = 100000;
-
-    ShuffleVectorWithLibrary(count);
-
-    ShuffleVectorFisherYates(count);
-
-    ShuffleVectorKnuthDurstenfeld(count);
-
-    ShuffleVectorInsideOut(count);*/
-
-    /*TestStaticLocalVariable1();
-    TestStaticLocalVariable2();*/
-
-    // TraversalEraseSet();
-    
-    /*char * const * (*next)(int, int(*)(char, short)) = nullptr;
-
-    //void(int) * signal(int sig, void(*func)(int));
-    void(*signal(int sig, void(*func)(int)))(int);*/
-
-    //std::cout << ExtVal2 << std::endl;
-
-    
-
-    system("pause");
+    std::map<int, Base> iMap;
+    auto rslt = iMap.erase(1);
 
     return 0;
 }

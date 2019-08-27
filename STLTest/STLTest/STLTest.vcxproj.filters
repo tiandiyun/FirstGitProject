@@ -81,6 +81,30 @@
     <ClInclude Include="STLSrc\TestString.h">
       <Filter>STLSrc</Filter>
     </ClInclude>
+    <ClInclude Include="STLSrc\TemplateSpecialization.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="MultInherit.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="LazySingleton.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestMap.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestTuple.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestException.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestVirtualFunc.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="FunctionParams.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -127,6 +151,24 @@
     </ClCompile>
     <ClCompile Include="STLSrc\TestString.cpp">
       <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TemplateSpecialization.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestMap.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestTuple.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestException.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestVirtualFunc.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="FunctionParams.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

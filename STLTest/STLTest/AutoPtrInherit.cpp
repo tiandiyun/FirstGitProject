@@ -3,8 +3,11 @@
 #include <typeinfo>
 #include <vector>
 #include <list>
+#include "DataStruct.h"
+
 
 int ExtVal[10] = { 1, 2, 3, 4, 0 };
+
 
 void TestVecEmplace()
 {

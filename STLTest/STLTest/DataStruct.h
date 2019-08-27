@@ -6,6 +6,127 @@
 #include <memory>
 #include <list>
 
+static int ExtVal2 = 10;
+
+class Base
+{
+public:
+    Base() : Base(100, 200)
+    {
+        std::cout << "Base()" << std::endl;
+    }
+
+    Base(int param) : Base(param, 200)
+    {
+        std::cout << "Base(int)" << std::endl;
+    }
+
+    Base(int param1, int param2) : mParam1(param1), mParem2(param2)
+    {
+        std::cout << "Base(int, int)" << std::endl;
+    }
+
+    Base(const Base& b) : Base(b.mParam1, b.mParem2)
+    {
+        std::cout << "Base(const Base&)" << std::endl;
+    }
+
+    Base(const Base&& b) : Base(b.mParam1, b.mParem2)
+    {
+        std::cout << "Base(const Base&&)" << std::endl;
+    }
+
+    ~Base()
+    {
+        std::cout << "~Base()" << std::endl;
+    }
+
+    Base& operator=(const Base& b)
+    {
+        std::cout << "operator=(const Base&)" << std::endl;
+        return *this;
+    }
+
+    Base& operator=(const Base&& b)
+    {
+        std::cout << "Base& operator=(const Base&&)" << std::endl;
+        return *this;
+    }
+
+    int operator-(const Base& b)
+    {
+        std::cout << "operator-(const Base&)" << std::endl;
+        return this->mParam1 - b.mParam1;
+    }
+
+    int operator-(const Base&& b)
+    {
+        std::cout << "operator-(const Base&&)" << std::endl;
+        return this->mParam1 - b.mParam1;
+    }
+
+    int operator+(const Base& b)
+    {
+        std::cout << "operator+(const Base&)" << std::endl;
+        return this->mParam1 + b.mParam1;
+    }
+
+    int operator+(const Base&& b)
+    {
+        std::cout << "operator+(const Base&&)" << std::endl;
+        return this->mParam1 + b.mParam1;
+    }
+
+    void CallRValueFunc(const Base&& b)
+    {
+        std::cout << "CallRValueFunc(const Base&& b)" << std::endl;
+    }
+
+    void SetParam1(int param) 
+    { 
+        mParam1 = param; 
+    }
+
+    int GetParam1()
+    {
+        return mParam1;
+    }
+
+    void SetParam2(int param)
+    {
+        mParem2 = param;
+    }
+
+    int GetParam2()
+    {
+        return mParem2;
+    }
+
+public:
+    virtual Base* Show()
+    {
+        std::cout << "Base::Show" << std::endl;
+        return this;
+    }
+
+private:
+    int mParam1;
+    int mParem2;
+};
+
+class Derive : public Base
+{
+public:
+    Base* Show() override
+    {
+        std::cout << "Derive::Show" << std::endl;
+        return this;
+    }
+
+    int dp = 0;
+};
+
+
 struct Fish
 {
     Fish()

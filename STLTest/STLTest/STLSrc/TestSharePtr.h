@@ -3,3 +3,5 @@
 void TestSharePtrInSTL();
 
 void TestAutoDestroy();
+
+void TestWeakPtr();
