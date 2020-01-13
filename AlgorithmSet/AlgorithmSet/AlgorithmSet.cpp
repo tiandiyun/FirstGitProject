@@ -2,11 +2,38 @@
 //
 
 #include <iostream>
+#include <memory>
 #include "DataModel/SinglyLinkedList.h"
+#include "malloc.h"
+
+#define SIZE_T_ONE          ((size_t)1)
+#define MALLOC_ALIGNMENT    ((size_t)(2 * sizeof(void *)))
+#define CHUNK_ALIGN_MASK    (MALLOC_ALIGNMENT - SIZE_T_ONE)
+
+#define _DLFREE(P) if (P) {dlfree(P); P = nullptr;}
 
 int main()
 {
-    TestCreatSinglyList();
+    std::cout << "MALLOC_ALIGNMENT: " << MALLOC_ALIGNMENT << std::endl;
+    std::cout << "CHUNK_ALIGN_MASK: " << CHUNK_ALIGN_MASK << std::endl;
+
+    auto p = dlmalloc(10);
+    auto q = dlmalloc(5);
+    auto r = dlmalloc(60);
+    auto s = dlmalloc(100);
+
+    _DLFREE(r);
+
+    p = dlmalloc(8);
+    auto t = dlmalloc(20);
+    t = dlmalloc(16);
+
+    _DLFREE(p);
+    _DLFREE(q);
+    _DLFREE(r);
+    _DLFREE(s);
+
+    system("pause");
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单

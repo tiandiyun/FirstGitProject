@@ -3,11 +3,12 @@
 
 inline SinglyLinkedList::~SinglyLinkedList()
 {
-	while (mHead)
+	while (mSize > 0)
 	{
 		LinkedIntNode* node = mHead;
 		mHead = node->next;
 		delete node;
+		--mSize;
 	}
 
 	mHead = nullptr;
@@ -77,12 +78,42 @@ void TestCreatSinglyList()
 	sll.Remove(100);
 }
 
-void CheckCircleInSLL(SinglyLinkedList& sll)
+bool CheckCircleInSLL()
 {
-	LinkedIntNode* prev = sll.Head();
-	LinkedIntNode* next = prev;
-	while ()
+	// 创建带环的单向链表
+	SinglyLinkedList sll;
+	int count = 100;
+	for (int i = 0; i < count; i++)
 	{
-
+		sll.Append(i);
 	}
+	LinkedIntNode* linkNode = sll.Last();
+
+	for (int i = count; i < count + 49; i++)
+	{
+		sll.Append(i);
+	}
+	sll.Last()->next = linkNode->next;
+
+	/*
+		D是无环长度，S是环长度
+		T = D + (S - D mod S) mod S
+	*/
+
+	// 检测环是否存在
+	int checkStep = 0;
+	LinkedIntNode* prv = sll.Head();
+	LinkedIntNode* nxt = prv;
+	while (nxt && nxt->next)
+	{
+		++checkStep;
+		prv = prv->next;
+		nxt = nxt->next->next;
+		if (prv == nxt)
+		{
+			return true;
+		}
+	}
+
+	return false;
 }

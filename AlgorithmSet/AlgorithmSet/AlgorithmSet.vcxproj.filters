@@ -16,6 +16,9 @@
     <Filter Include="DataModel">
       <UniqueIdentifier>{81203720-53b3-4950-8fab-e6e31737b103}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DlMalloc">
+      <UniqueIdentifier>{207fdadb-6bfc-473a-b969-b879a2de6118}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlgorithmSet.cpp">
@@ -24,10 +27,19 @@
     <ClCompile Include="DataModel\SinglyLinkedList.cpp">
       <Filter>DataModel</Filter>
     </ClCompile>
+    <ClCompile Include="malloc.c">
+      <Filter>DlMalloc</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h">
       <Filter>DataModel</Filter>
+    </ClInclude>
+    <ClInclude Include="SSyMemoryNedAlloc.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="malloc.h">
+      <Filter>DlMalloc</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

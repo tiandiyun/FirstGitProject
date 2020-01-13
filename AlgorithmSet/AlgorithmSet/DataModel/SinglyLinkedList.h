@@ -34,3 +34,5 @@ private:
 
 
 void TestCreatSinglyList();
+
+bool CheckCircleInSLL();
