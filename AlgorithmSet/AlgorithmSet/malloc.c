@@ -4672,6 +4672,59 @@ void* dlmalloc(size_t bytes) {
   return 0;
 }
 
+//TODO: test
+static void _InsertLargeChunk(struct malloc_state* M, tchunkptr X, size_t S)
+{
+    tbinptr* H;
+    bindex_t I;
+    compute_tree_index(S, I);
+    H = treebin_at(M, I);
+    X->index = I;
+    X->child[0] = X->child[1] = 0;
+    if (!treemap_is_marked(M, I)) {
+        mark_treemap(M, I);
+        *H = X;
+        X->parent = (tchunkptr)H;
+        X->fd = X->bk = X;
+    }
+    else {
+        tchunkptr T = *H;
+        size_t K = S << leftshift_for_tree_index(I);
+        for (;;) {
+            if (chunksize(T) != S) {
+                tchunkptr* C = &(T->child[(K >> (SIZE_T_BITSIZE - SIZE_T_ONE)) & 1]);
+                K <<= 1;
+                if (*C != 0)
+                    T = *C;
+                else if (RTCHECK(ok_address(M, C))) {
+                    *C = X;
+                    X->parent = T;
+                    X->fd = X->bk = X;
+                    break;
+                }
+                else {
+                    CORRUPTION_ERROR_ACTION(M);
+                    break;
+                }
+            }
+            else {
+                tchunkptr F = T->fd;
+                if (RTCHECK(ok_address(M, T) && ok_address(M, F))) {
+                    T->fd = F->bk = X;
+                    X->fd = F;
+                    X->bk = T;
+                    X->parent = 0;
+                    break;
+                }
+                else {
+                    CORRUPTION_ERROR_ACTION(M);
+                    break;
+                }
+            }
+        }
+    }
+}
+
 /* ---------------------------- free --------------------------- */
 
 void dlfree(void* mem) {
@@ -4712,7 +4765,7 @@ void dlfree(void* mem) {
             if (RTCHECK(ok_address(fm, prev))) { /* consolidate backward */
               if (p != fm->dv) {
                       {
-                          // TODO: test
+                            // TODO: test
                             mchunkptr F = p->fd;
                             mchunkptr B = p->bk;
                             bindex_t I = small_index(prevsize);
@@ -4820,7 +4873,11 @@ void dlfree(void* mem) {
           }
           else {
             tchunkptr tp = (tchunkptr)p;
-            insert_large_chunk(fm, tp, psize);
+            
+            //TODO: test
+            //insert_large_chunk(fm, tp, psize);
+            _InsertLargeChunk(fm, tp, psize);
+
             check_free_chunk(fm, p);
             if (--fm->release_checks == 0)
               release_unused_segments(fm);
