@@ -88,14 +88,17 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="STLSrc\Attribute.h" />
     <ClInclude Include="STLSrc\TemplateSpecialization.h" />
+    <ClInclude Include="STLSrc\TestBit.h" />
     <ClInclude Include="STLSrc\TestC11Time.h" />
     <ClInclude Include="STLSrc\TestDeque.h" />
     <ClInclude Include="STLSrc\CustomRandom.h" />
     <ClInclude Include="STLSrc\TestException.h" />
+    <ClInclude Include="STLSrc\TestIterator.h" />
     <ClInclude Include="STLSrc\TestMap.h" />
     <ClInclude Include="STLSrc\TestSet.h" />
     <ClInclude Include="STLSrc\TestSharePtr.h" />
     <ClInclude Include="STLSrc\TestShuffle.h" />
+    <ClInclude Include="STLSrc\TestStatic.h" />
     <ClInclude Include="STLSrc\TestString.h" />
     <ClInclude Include="STLSrc\TestTemplate.h" />
     <ClInclude Include="STLSrc\TestTuple.h" />
@@ -115,15 +118,19 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="STLSrc\Attribute.cpp" />
     <ClCompile Include="STLSrc\TemplateSpecialization.cpp" />
+    <ClCompile Include="STLSrc\TestBit.cpp" />
     <ClCompile Include="STLSrc\TestC11Time.cpp" />
     <ClCompile Include="STLSrc\TestDeque.cpp" />
     <ClCompile Include="STLSrc\CustomRandom.cpp" />
     <ClCompile Include="STLSrc\TestException.cpp" />
+    <ClCompile Include="STLSrc\TestIterator.cpp" />
     <ClCompile Include="STLSrc\TestMap.cpp" />
     <ClCompile Include="STLSrc\TestSet.cpp" />
     <ClCompile Include="STLSrc\TestSharePtr.cpp" />
     <ClCompile Include="STLSrc\TestShuffle.cpp" />
+    <ClCompile Include="STLSrc\TestStatic.cpp" />
     <ClCompile Include="STLSrc\TestString.cpp" />
     <ClCompile Include="STLSrc\TestTemplate.cpp" />
     <ClCompile Include="STLSrc\TestTuple.cpp" />

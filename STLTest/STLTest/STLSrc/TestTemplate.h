@@ -25,7 +25,7 @@ void TestRandomPick();
 
 template<typename WT> struct WeightedObj
 {
-    WeightedObj() { weight = RWAttrDifference<WT>::Default(); }
+    WeightedObj() { weight = AttrDifference<WT>::Default(); }
     WeightedObj(WT w) : weight(w) {}
     WT weight;
 };
@@ -41,10 +41,10 @@ WOCIterator RandomPickWeightedIterator(WeightedObjContainer& ct)
         return ct.end();
     }
 
-    WT sum = RWAttrDifference<WT>::Default();
+    WT sum = AttrDifference<WT>::Default();
     for_each(ct.begin(), ct.end(), [&sum](WeightedObjRef& obj){ sum += obj.weight; });
 
-    WT markV = RWAttrRandom<WT>::Random(RWAttrDifference<WT>::Default(), sum);
+    WT markV = AttrRandom<WT>::Random(AttrDifference<WT>::Default(), sum);
     auto it = ct.begin();
     for (; it != ct.end() && markV > it->weight; markV -= (it++)->weight);
 

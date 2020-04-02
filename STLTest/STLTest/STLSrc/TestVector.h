@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vector>
+void TestVectorEmplace();
 
 void TestFindIfInVector();
 
-void TestEmplace();
+void TestEmplaceVector();

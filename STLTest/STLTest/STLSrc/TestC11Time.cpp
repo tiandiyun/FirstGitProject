@@ -2,6 +2,9 @@
 #include "TestC11Time.h"
 #include <iostream>
 #include <thread>
+#include <sstream>
+#include <locale>
+#include <iterator>
 
 void TestRep()
 {
@@ -85,4 +88,65 @@ void TestCustomDuration()
     std::cout << t3.count() << " second" << std::endl;
 
     std::cout << std::chrono::duration_cast<std::chrono::minutes>(t3).count() << " minutes" << std::endl;
+}
+
+
+time_t TimeFromString(const std::string &s, const char* format /*= nullptr*/) 
+{
+    std::istringstream ss(s);
+
+    tm when = { 0 };
+    try
+    {
+        if (format)
+        {
+            ss >> std::get_time(&when, format);
+        }
+        else
+        {
+            ss >> std::get_time(&when, "%Y-%m-%d %H:%M:%S");
+        }
+    }
+    catch (std::exception &)
+    {
+        return -1;
+    }
+    catch (...)
+    {
+        return -1;
+    }
+
+    if (ss.fail())
+    {
+        return -1;
+    }
+
+    return mktime(&when);
+}
+
+
+void try_get_time(const std::string& s)
+{
+    std::cout << "Parsing the time out of '" << s <<
+        "' in the locale " << std::locale().name() << '\n';
+    std::istringstream str(s);
+    std::ios_base::iostate err = std::ios_base::goodbit;
+
+    std::tm t;
+    std::istreambuf_iterator<char> ret = 
+        std::use_facet<std::time_get<char>>(str.getloc()).get_time({ str }, {}, str, err, &t);
+
+    str.setstate(err);
+    if (str) 
+    {
+        std::cout << "Hours: " << t.tm_hour << ' '
+            << "Minutes: " << t.tm_min << ' '
+            << "Seconds: " << t.tm_sec << '\n';
+    }
+    else 
+    {
+        std::cout << "Parse failed. Unparsed string: ";
+//         std::copy(ret, {}, std::ostreambuf_iterator<char>(std::cout));
+//         std::cout << '\n';
+    }
 }

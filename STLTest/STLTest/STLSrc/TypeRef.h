@@ -57,3 +57,7 @@ void TestTemplate();
 void TestRefByRef();
 
 void TestRefWrapper();
+
+void TestRefWrapCopy();
+
+void RefWarpperSort();

@@ -105,6 +105,15 @@
     <ClInclude Include="FunctionParams.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="STLSrc\TestStatic.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestIterator.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
+    <ClInclude Include="STLSrc\TestBit.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -169,6 +178,18 @@
     </ClCompile>
     <ClCompile Include="FunctionParams.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestStatic.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestIterator.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestBit.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\Attribute.cpp">
+      <Filter>STLSrc</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,6 +3,33 @@
 #include <iostream>
 #include <string>
 
+std::string getStr()
+{
+	std::string temp = "124432";
+	return temp;
+}
+
+void TestPCharNullOrEmpty()
+{
+	const char* pChar = "";
+	if (!pChar || strlen(pChar) == 0)
+	{
+		printf("pChar in null1");
+	}
+
+	pChar = nullptr;
+	if (!pChar || strlen(pChar) == 0)
+	{
+		printf("pChar in null2");
+	}
+
+	pChar = "a";
+	if (!pChar || strlen(pChar) == 0)
+	{
+		printf("pChar in null3");
+	}
+}
+
 void TestRFind()
 {
     //const char* cfgFile = "../cfg/redWars/redWars.xml";
@@ -36,4 +63,24 @@ void TestRFind()
     }
 
     std::cout << cfgLabel.c_str() << std::endl;
+}
+
+void TestTrimSpace()
+{
+    std::string tstStr = " ";
+    auto index = tstStr.find_first_not_of(" ");
+    if (index != std::string::npos)
+    {
+        tstStr.erase(0, index);
+    }
+
+    index = tstStr.find_first_of(" ");
+    if (index != std::string::npos)
+    {
+        tstStr.erase(index);
+    }
+
+    std::string tmp;
+    int len = tmp.length();
+    auto c = tmp[len];
 }

@@ -11,34 +11,34 @@ static int ExtVal2 = 10;
 class Base
 {
 public:
-    Base() : Base(100, 200)
+    Base()
     {
-        std::cout << "Base()" << std::endl;
+        std::cout << "Base() Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
-    Base(int param) : Base(param, 200)
+    Base(int param1) : mParam1(param1)
     {
-        std::cout << "Base(int)" << std::endl;
+        std::cout << "Base(int) Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
     Base(int param1, int param2) : mParam1(param1), mParem2(param2)
     {
-        std::cout << "Base(int, int)" << std::endl;
+        std::cout << "Base(int, int) Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
-    Base(const Base& b) : Base(b.mParam1, b.mParem2)
+    Base(const Base& b) : mParam1(b.mParam1), mParem2(b.mParem2)
     {
-        std::cout << "Base(const Base&)" << std::endl;
+        std::cout << "Base(const Base&) Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
-    Base(const Base&& b) : Base(b.mParam1, b.mParem2)
+    Base(const Base&& b) : mParam1(b.mParam1), mParem2(b.mParem2)
     {
-        std::cout << "Base(const Base&&)" << std::endl;
+        std::cout << "Base(const Base&&) Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
     ~Base()
     {
-        std::cout << "~Base()" << std::endl;
+        std::cout << "~Base() Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
     Base& operator=(const Base& b)
@@ -110,8 +110,8 @@ public:
     }
 
 private:
-    int mParam1;
-    int mParem2;
+    int mParam1{ 100 };
+    int mParem2{ 200 };
 };
 
 class Derive : public Base

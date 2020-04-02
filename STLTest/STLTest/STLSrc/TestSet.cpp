@@ -7,6 +7,30 @@
 #include <deque>
 #include "../DataStruct.h"
 
+void TestSet()
+{
+	std::set<int> intSet;
+	intSet.clear();
+
+	intSet.insert(4);
+	intSet.insert(3);
+	intSet.insert(2);
+	intSet.insert(1);
+
+	for (int a : intSet)
+	{
+		std::cout << a << std::endl;
+	}
+
+	int data = intSet.erase(3);
+	std::cout << data << std::endl;
+
+	data = intSet.erase(2);
+	std::cout << data << std::endl;
+
+	auto d = intSet.find(4);
+}
+
 void TestUnorderedSet()
 {
     std::unordered_set<int> iSet;
@@ -29,6 +53,15 @@ void EmplaceToSet()
     std::list<Base> bSet;
     Base b;
     bSet.emplace_back(std::move(b));
+
+    std::set<int> srcSet;
+    srcSet.emplace(2);
+    srcSet.emplace(1);
+
+    std::set<int> dstSet;
+    dstSet.emplace(4);
+    dstSet.emplace(5);
+    dstSet.insert(srcSet.begin(), srcSet.end());
 }
 
 void TraversalEraseSet()
@@ -118,4 +151,23 @@ void EraseMultSet()
     it = iSet.erase(it, nextIt);
 }
 
+
+void TestMultiset()
+{
+    std::multiset<int> iMSet;
+    iMSet.emplace(3);
+    iMSet.emplace(5);
+    iMSet.emplace(1);
+    iMSet.emplace(4);
+    iMSet.emplace(4);
+    iMSet.emplace(2);
+    for (int v : iMSet)
+    {
+        std::cout << v << ", ";
+    }
+    std::cout << std::endl;
+
+    auto it = iMSet.find(4);
+    it = iMSet.erase(it);
+}
 

@@ -4,6 +4,7 @@
 #include <vector>
 #include <numeric>
 #include <random>
+#include <iterator>
 #include "../DataStruct.h"
 
 
@@ -97,4 +98,51 @@ void TestRefWrapper()
 
     std::cout << "Contents of the list, as seen through a shuffled vector: ";
     for (int i : v) std::cout << i << ' '; std::cout << '\n';
+}
+
+struct refWrap
+{
+    refWrap(int &ii) : i(ii) {}
+    std::reference_wrapper<int> i;
+};
+
+void TestRefWrapCopy()
+{
+    std::vector<Base> srcBase;
+    for (int i = 0; i < 6; ++i)
+    {
+        srcBase.emplace_back(Base(i));
+    }
+
+    std::cout << "-----------------------" << std::endl;
+
+    std::vector<std::reference_wrapper<Base>> dst2;
+    {
+        std::vector<std::reference_wrapper<Base>> dst;
+        //std::copy(srcBase.begin(), srcBase.end(), std::back_inserter(dst));
+        for (auto it = srcBase.begin(); it != srcBase.end(); ++it)
+        {
+            dst.emplace_back(*it);
+        }
+
+        dst2.swap(dst);
+    }
+
+    int j = 0;
+}
+
+void RefWarpperSort()
+{
+    std::vector<int> intVec;
+    for (int i = 0; i < 6; ++i)
+    {
+        intVec.emplace_back(6 - 1 - i);
+    }
+
+    std::list<std::reference_wrapper<int>> sortList;
+    for (auto &d : intVec)
+    {
+        sortList.emplace_back(d);
+    }
+    sortList.sort();
 }
