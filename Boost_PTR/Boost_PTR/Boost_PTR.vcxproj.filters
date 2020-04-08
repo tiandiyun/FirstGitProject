@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Time">
+      <UniqueIdentifier>{8ad2da0d-7e2a-48d5-8b9c-7df6b7a28f12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -45,6 +48,9 @@
     <ClInclude Include="test_boost_time.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Time\Progress.h">
+      <Filter>Time</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -73,6 +79,9 @@
     </ClCompile>
     <ClCompile Include="test_boost_time.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Time\Progress.cpp">
+      <Filter>Time</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

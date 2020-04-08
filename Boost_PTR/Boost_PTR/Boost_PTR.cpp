@@ -14,6 +14,7 @@
 #include "testDataTime.h"
 #include "AutoPtrInherit.h"
 #include "test_boost_time.h"
+#include "Time/Progress.h"
 
 class A
 {
@@ -91,26 +92,11 @@ void TestSharePtr()
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    /*TestBindFunc();*/
+	//TestProgressTime();
 
-	/*signalFunc();*/
+	TestProgressDisplay();
 
-	/*emitThread();*/
-
-    /*TestTraceStack();*/
-
-    /*generate_user();
-    read_user();*/
-    //read_json_data_from_string();
-
-    /*CompareDate();*/
-
-    //TestAutoPtrInherit();
-
-    PtimeFromString();
-
-	getchar();
-
+	system("pause");
 	return 0;
 }
 

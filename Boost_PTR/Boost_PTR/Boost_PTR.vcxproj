@@ -52,12 +52,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>E:\Lib\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\Tools\Lib\boost_1_67_0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\Lib\boost_1_67_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>D:\Tools\Lib\boost_1_67_0\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -90,6 +90,7 @@
     <ClInclude Include="test_boost_signal.h" />
     <ClInclude Include="test_boost_time.h" />
     <ClInclude Include="test_thread.h" />
+    <ClInclude Include="Time\Progress.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AutoPtrInherit.cpp" />
@@ -104,6 +105,7 @@
     <ClCompile Include="test_boost_signal.cpp" />
     <ClCompile Include="test_boost_time.cpp" />
     <ClCompile Include="test_thread.cpp" />
+    <ClCompile Include="Time\Progress.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
