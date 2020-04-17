@@ -19,6 +19,9 @@
     <Filter Include="DlMalloc">
       <UniqueIdentifier>{207fdadb-6bfc-473a-b969-b879a2de6118}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{e10c3e45-4daf-441a-a73d-c23dd92d1d91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AlgorithmSet.cpp">
@@ -30,6 +33,15 @@
     <ClCompile Include="malloc.c">
       <Filter>DlMalloc</Filter>
     </ClCompile>
+    <ClCompile Include="Source\TestMalloc.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TestNumerics.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MathFuction.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h">
@@ -40,6 +52,15 @@
     </ClInclude>
     <ClInclude Include="malloc.h">
       <Filter>DlMalloc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TestMalloc.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TestNumerics.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MathFuction.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

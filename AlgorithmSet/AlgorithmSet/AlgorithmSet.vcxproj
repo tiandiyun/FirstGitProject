@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -91,6 +91,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;USE_DL_PREFIX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,10 +155,16 @@
     <ClCompile Include="AlgorithmSet.cpp" />
     <ClCompile Include="DataModel\SinglyLinkedList.cpp" />
     <ClCompile Include="malloc.c" />
+    <ClCompile Include="Source\MathFuction.cpp" />
+    <ClCompile Include="Source\TestMalloc.cpp" />
+    <ClCompile Include="Source\TestNumerics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h" />
     <ClInclude Include="malloc.h" />
+    <ClInclude Include="Source\MathFuction.h" />
+    <ClInclude Include="Source\TestMalloc.h" />
+    <ClInclude Include="Source\TestNumerics.h" />
     <ClInclude Include="SSyMemoryNedAlloc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
