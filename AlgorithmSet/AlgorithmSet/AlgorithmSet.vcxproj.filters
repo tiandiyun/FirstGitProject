@@ -42,6 +42,9 @@
     <ClCompile Include="Source\MathFuction.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CustomRandom.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h">
@@ -60,6 +63,9 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\MathFuction.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CustomRandom.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

@@ -155,6 +155,7 @@
     <ClCompile Include="AlgorithmSet.cpp" />
     <ClCompile Include="DataModel\SinglyLinkedList.cpp" />
     <ClCompile Include="malloc.c" />
+    <ClCompile Include="Source\CustomRandom.cpp" />
     <ClCompile Include="Source\MathFuction.cpp" />
     <ClCompile Include="Source\TestMalloc.cpp" />
     <ClCompile Include="Source\TestNumerics.cpp" />
@@ -162,6 +163,7 @@
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h" />
     <ClInclude Include="malloc.h" />
+    <ClInclude Include="Source\CustomRandom.h" />
     <ClInclude Include="Source\MathFuction.h" />
     <ClInclude Include="Source\TestMalloc.h" />
     <ClInclude Include="Source\TestNumerics.h" />

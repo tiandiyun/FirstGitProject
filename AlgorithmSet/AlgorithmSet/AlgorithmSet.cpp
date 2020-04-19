@@ -9,7 +9,7 @@
 
 int main()
 {
-	DrawFunction();
+	SimulatDDZBalance();
 
 	system("pause");
 }
