@@ -28,12 +28,12 @@ public:
 
     Base(const Base& b) : mParam1(b.mParam1), mParem2(b.mParem2)
     {
-        std::cout << "Base(const Base&) Addr: 0x" << std::hex << (int)this << ", b Addr: 0x" << (int)&b << std::endl;
+        std::cout << "Base(const Base&) Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
-    Base(const Base&& b) : mParam1(b.mParam1), mParem2(b.mParem2)
+    Base(const Base&& b) noexcept : mParam1(b.mParam1), mParem2(b.mParem2)
     {
-        std::cout << "Base(const Base&&) Addr: 0x" << std::hex << (int)this << ", b Addr: 0x" << (int)&b << std::endl;
+        std::cout << "Base(const Base&&) Addr: 0x" << std::hex << (int)this << std::endl;
     }
 
     ~Base()
@@ -47,7 +47,7 @@ public:
         return *this;
     }
 
-    Base& operator=(const Base&& b)
+    Base& operator=(const Base&& b) noexcept
     {
         std::cout << "Base& operator=(const Base&&)" << std::endl;
         return *this;

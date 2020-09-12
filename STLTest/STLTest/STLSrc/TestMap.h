@@ -13,3 +13,5 @@ void TraversalDeleteMap();
 void TestHandCardsOP();
 
 void TestMultiMap();
+
+void MapInsertByOrder();

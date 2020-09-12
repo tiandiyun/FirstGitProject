@@ -6,10 +6,13 @@
 #include <windows.h>
 #include "Source/TestNumerics.h"
 #include "Source/MathFuction.h"
+#include "Source/SimulatDDZ.h"
+#include "Source/TestOperatorPriority.h"
+
 
 int main()
 {
-	SimulatDDZBalance();
+	TestCompareOperator();
 
 	system("pause");
 }

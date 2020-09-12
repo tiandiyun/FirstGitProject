@@ -114,6 +114,9 @@
     <ClInclude Include="STLSrc\TestBit.h">
       <Filter>STLSrc</Filter>
     </ClInclude>
+    <ClInclude Include="STLSrc\TestIntegralConstant.h">
+      <Filter>STLSrc</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -189,6 +192,9 @@
       <Filter>STLSrc</Filter>
     </ClCompile>
     <ClCompile Include="STLSrc\Attribute.cpp">
+      <Filter>STLSrc</Filter>
+    </ClCompile>
+    <ClCompile Include="STLSrc\TestIntegralConstant.cpp">
       <Filter>STLSrc</Filter>
     </ClCompile>
   </ItemGroup>

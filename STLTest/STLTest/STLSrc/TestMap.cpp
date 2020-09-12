@@ -2,6 +2,7 @@
 #include "TestMap.h"
 #include <map>
 #include <time.h>
+#include <unordered_map>
 #include "../DataStruct.h"
 
 
@@ -100,7 +101,6 @@ void TraversalDeleteMap()
 }
 
 using DdzRbtHandCards = std::map<uint8_t, uint8_t>;
-
 DdzRbtHandCards & operator-=(DdzRbtHandCards &srcHands, const DdzRbtHandCards &othHands)
 {
     for (auto it2 = othHands.begin(); it2 != othHands.end(); ++it2)
@@ -158,4 +158,42 @@ void TestMultiMap()
 	{
 		std::cout << (*ittemp).second << std::endl;
 	}
+}
+
+void TestMapFind()
+{
+    std::map<int, Fish> fishMap;
+    fishMap.emplace(std::make_pair(1, Fish()));
+    fishMap.emplace(2, Fish());
+    auto it = std::find_if(fishMap.begin(), fishMap.end(), [](const std::pair<int, Fish>& fishPari){
+        /*std::cout << fishPari.first << std::endl;*/
+        return true;
+    });
+}
+
+void MapInsertByOrder()
+{
+    std::map<int, int> orderedMap;
+    orderedMap[3] = 0;
+    orderedMap[0] = 3;
+    orderedMap[2] = 1;
+    orderedMap[1] = 2;
+
+    std::unordered_map<int, int> unorderedMap;
+    unorderedMap[3] = 0;
+    unorderedMap[0] = 3;
+    unorderedMap[2] = 1;
+    unorderedMap[1] = 2;
+    
+    for (auto& mp : orderedMap)
+    {
+        std::cout << mp.first << ",";
+    }
+    std::cout << std::endl;
+
+    for (auto& mp : unorderedMap)
+    {
+        std::cout << mp.first << ",";
+    }
+    std::cout << std::endl;
 }

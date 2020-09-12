@@ -9,9 +9,11 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="资源文件">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Util">
+      <UniqueIdentifier>{87f507d2-8176-49c9-b724-48a19bbc3b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4aceb4c9-d107-4e2d-b623-5e9abf270c1a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,8 +26,32 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="RandomChoice.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="Util\RandomChoice.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TTThread.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\DataStruct.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TTStlAlgorithm.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\UtilFunction.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TTStlContainer.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TTWinApi.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TTBase.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TTIO.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +60,27 @@
     </ClCompile>
     <ClCompile Include="TestSTL2.cpp">
       <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TTThread.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TTStlAlgorithm.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Util\UtilFunction.cpp">
+      <Filter>Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TTStlContainer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TTWinApi.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TTBase.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TTIO.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

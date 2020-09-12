@@ -94,7 +94,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	//TestProgressTime();
 
-	TestProgressDisplay();
+    TestDateTime();
 
 	system("pause");
 	return 0;

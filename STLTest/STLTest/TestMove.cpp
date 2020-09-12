@@ -3,6 +3,7 @@
 #include <xutility>
 #include <iostream>
 #include <vector>
+#include <sstream>
 #include "DataStruct.h"
 
 void TestMoveString()
@@ -32,4 +33,54 @@ void TestMoveData()
     std::vector<Base> dataVec;
     dataVec.emplace_back(data1);
     dataVec.emplace_back(std::move(data2));
+}
+
+void TestEmplace()
+{
+    std::vector<Base> dataVec;
+
+    {
+        dataVec.emplace_back(Base());
+    }
+
+    std::cout << "----------------------" << std::endl;
+
+    {
+        Base b;
+        dataVec.emplace_back(b);
+        std::cout << "0x" << std::hex << (int)&(dataVec.back()) << std::endl;
+    }
+}
+
+
+static std::string ThroughBlocks2String(std::vector<int>& throughBlocksCount)
+{
+    const char* blockNames[] = { "Gap", "Comm", "Red", "Move", "Ice", "Meteor", "Board" };
+    size_t size = (std::min)(sizeof(blockNames), throughBlocksCount.size());
+
+    std::stringstream ss;
+    size_t i = 0;
+    for (; i < size; ++i)
+    {
+        ss << ", " << blockNames[i] << " : " << throughBlocksCount[i];
+    }
+
+    for (; i < throughBlocksCount.size(); ++i)
+    {
+        ss << ", " << "none-name " << i << " : " << throughBlocksCount[i];
+    }
+
+    return ss.str();
+}
+
+void TestMoveTemporaryString()
+{
+    std::vector<int> throughBlocksCount;
+    for (int i = 0; i < 7; ++i)
+    {
+        throughBlocksCount.push_back(i);
+    }
+
+    std::string&& buffer = ThroughBlocks2String(throughBlocksCount);
+    std::cout << buffer << std::endl;
 }

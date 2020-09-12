@@ -25,29 +25,13 @@
 #include "STLSrc/TestIterator.h"
 #include "STLSrc/TestBit.h"
 #include "STLSrc/Attribute.h"
+#include "STLSrc/TestIntegralConstant.h"
+#include <stdio.h>
 
-
-class b
-{
-public:
-    virtual void haha() = 0;
-};
-
-class db : public b
-{
-
-public:
-    virtual void haha() override
-    {
-        throw std::logic_error("The method or operation is not implemented.");
-    }
-
-};
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    TestEmplaceVector();
-
+    TestAttrs();
     system("pause");
     return 0;
 }

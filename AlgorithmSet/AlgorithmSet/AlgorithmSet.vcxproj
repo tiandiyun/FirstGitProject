@@ -29,7 +29,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -157,16 +157,20 @@
     <ClCompile Include="malloc.c" />
     <ClCompile Include="Source\CustomRandom.cpp" />
     <ClCompile Include="Source\MathFuction.cpp" />
+    <ClCompile Include="Source\SimulatDDZ.cpp" />
     <ClCompile Include="Source\TestMalloc.cpp" />
     <ClCompile Include="Source\TestNumerics.cpp" />
+    <ClCompile Include="Source\TestOperatorPriority.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h" />
     <ClInclude Include="malloc.h" />
     <ClInclude Include="Source\CustomRandom.h" />
     <ClInclude Include="Source\MathFuction.h" />
+    <ClInclude Include="Source\SimulatDDZ.h" />
     <ClInclude Include="Source\TestMalloc.h" />
     <ClInclude Include="Source\TestNumerics.h" />
+    <ClInclude Include="Source\TestOperatorPriority.h" />
     <ClInclude Include="SSyMemoryNedAlloc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

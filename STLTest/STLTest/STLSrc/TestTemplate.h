@@ -4,8 +4,10 @@
 #include <random>
 #include <iostream>
 #include <algorithm>
+#include <stdint.h>
 #include "../AutoPtrInherit.h"
 #include "Attribute.h"
+#include "CustomRandom.h"
 
 template <typename DirectAccessContainer, typename DACIterator = DirectAccessContainer::iterator>
 DACIterator RandomPickIteratorFromDAC(DirectAccessContainer& ct)
@@ -30,25 +32,35 @@ template<typename WT> struct WeightedObj
     WT weight;
 };
 
-template<typename WeightedObjContainer, 
-    typename WOCIterator = WeightedObjContainer::iterator, 
-    typename WeightedObjRef = decltype(*(std::declval<WOCIterator>())),
-    typename WT = decltype(std::declval<WeightedObjRef>().weight)>
-WOCIterator RandomPickWeightedIterator(WeightedObjContainer& ct)
+template<typename WOCIterator,
+    typename WeightedObjRef = decltype(*std::declval<WOCIterator>()),
+    typename NonConstWeithObj = std::iterator_traits<WOCIterator>::value_type,
+    typename NonConstWT = decltype(std::declval<NonConstWeithObj>().weight)
+>
+WOCIterator RandomPickWeightedIterator(WOCIterator& begIt, WOCIterator& endIt)
 {
-    if (ct.empty())
+    if (begIt == endIt)
     {
-        return ct.end();
+        return endIt;
     }
 
-    WT sum = AttrDifference<WT>::Default();
-    for_each(ct.begin(), ct.end(), [&sum](WeightedObjRef& obj){ sum += obj.weight; });
+    NonConstWT defaultValue = AttrDifference<NonConstWT>::Default();
+    NonConstWT sum = defaultValue;
+    for_each(begIt, endIt, [&sum](WeightedObjRef obj){ sum += obj.weight; });
 
-    WT markV = AttrRandom<WT>::Random(AttrDifference<WT>::Default(), sum);
-    auto it = ct.begin();
-    for (; it != ct.end() && markV > it->weight; markV -= (it++)->weight);
+    NonConstWT markV = AttrRandom<NonConstWT>::Random(defaultValue + AttrDifference<NonConstWT>::MinDiff(), sum);
+    WOCIterator it = begIt;
+    for (; it != endIt && markV > it->weight; markV -= (it++)->weight);
 
     return it;
+}
+
+template<typename WeightedObjContainer,
+    typename WOCIterator = decltype(std::declval<WeightedObjContainer>().begin())
+>
+WOCIterator RandomPickWeightedIterator(WeightedObjContainer& ct)
+{
+    return RandomPickWeightedIterator(ct.begin(), ct.end());
 }
 
 struct TestObject : public WeightedObj<int>
@@ -74,3 +86,57 @@ void TraversalPrintContainer(Container& ct)
     }
     std::cout << std::endl;
 }
+
+template<typename SequenceContainer, typename T = SequenceContainer::value_type>
+bool RandomSplitInteger(T total, T base, T lower, int count, SequenceContainer& result)
+{
+    // 检查参数是否合法
+    if (base <= 0 || count <= 0 || lower < base || total % base != 0)
+    {
+        return false;
+    }
+
+    // 拆分值下限对base向上取整
+    auto floor = ((lower -1) / base + 1) * base;
+    if (total < floor * count)
+    {
+        return false;
+    }
+
+    // 总值扣掉下限之和，然后除以拆分基数，用剩余的值进行随机拆分，
+    auto remain = (total - floor * count) / base;
+
+    // 随机生成（count - 1）个切分点
+    std::list<int> points;
+    for (int i = 0; i < count - 1; ++i)
+    {
+        T pt = RangeRndI(0, remain);
+        points.push_back(pt);
+    }
+    points.sort();
+
+    // 把终点加进去，开始切分
+    points.push_back(remain);
+
+    // 将切分后将每个值补上基数和下限
+    result.clear();
+    int prev = 0;
+    for (auto it = points.begin(); it != points.end(); ++it)
+    {
+        result.push_back((*it - prev) * base + floor);
+        prev = *it;
+    }
+    return true;
+}
+
+void TestRandomSplit();
+
+void TestVariableParamsTemplate();
+
+void ParamsPacketExpansionInFunction();
+
+int TestVarParamsInRecursionFuction();
+
+void TestVarParamsPartialSpecialization();
+
+void TestTemplateSpecialize();

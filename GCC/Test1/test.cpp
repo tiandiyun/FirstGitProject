@@ -28,9 +28,13 @@ void TestOperatorOverFlow()
 
 int main()
 {
+	
 	//std::cout << sizeof(strc) << std::endl;
 	
-    TestOperatorOverFlow();
+    	//TestOperatorOverFlow();
+
+	bool flag = false;
+	std::cout << flag << std::endl;
 
 	getchar();
 

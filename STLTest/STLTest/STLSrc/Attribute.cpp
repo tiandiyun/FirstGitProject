@@ -1,23 +1,15 @@
 #include "stdafx.h"
 #include "Attribute.h"
 #include <stdint.h>
-
-
-template<typename AttrInterval>
-class AttrIntervalParserDerive : public AttrIntervalParser<AttrInterval>
-{
-protected:
-    void ParseAttrValue() override
-    {
-        std::cout << "Derive Parser" << std::endl;
-    }
-};
+#include "..\DataStruct.h"
 
 void TestAttrs()
 {
-    SectionGroup<SectionAttrs<int>> attrGroup;
-    attrGroup.PrintBaseType();
+    std::string s = "20";
+    int v = StringConvert<int>(s);
+    std::cout << v << std::endl;
 
-    SectionAttrs<int, AttrIntervalParserDerive<AttrInterval<int>>> attrs;
-    attrs.keyAttr.Parse();
+    Base b;
+    SectionGroup<SectionAttrs<int>, AttrValueParser<AttrInterval<int>>> intGroup;
+    intGroup.ParseNewAttrValue(b, "lower", "upper");
 }

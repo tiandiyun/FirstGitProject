@@ -45,6 +45,12 @@
     <ClCompile Include="Source\CustomRandom.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\SimulatDDZ.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TestOperatorPriority.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataModel\SinglyLinkedList.h">
@@ -66,6 +72,12 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="Source\CustomRandom.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\SimulatDDZ.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TestOperatorPriority.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

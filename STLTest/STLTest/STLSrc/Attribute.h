@@ -3,7 +3,10 @@
 #include <list>
 #include <typeinfo>
 #include <iostream>
+#include <string>
+#include <stdint.h>
 #include "CustomRandom.h"
+#include "..\DataStruct.h"
 
 #ifdef _WIN64
 typedef long INT64;
@@ -195,81 +198,58 @@ protected:
     T   mSecUpper;
 };
 
-template<typename AttrInterval, typename T = decltype(std::declval<AttrInterval>().GetRandom())>
-class AttrIntervalParser
+//////////////////////////////////////////////////////////////////////////
+
+template<typename T> T StringConvert(const std::string& rawString)
+{
+    T attrValue = AttrDifference<T>::Default();
+    //return StrConv::parseVal(rawString, attrValue);
+    return static_cast<T>(std::stoi(rawString));
+}
+
+template<INT64> INT64 StringConvert(const std::string& rawString)
+{ 
+    return std::is_same<INT64, long>::value ? std::stol(rawString) : std::stoll(rawString); 
+}
+
+template<UINT64> UINT64 StringConvert(const std::string& rawString)
+{ 
+    return std::is_same<UINT64, unsigned long>::value ? std::stoul(rawString) : std::stoull(rawString); 
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+template<typename AttrInterval> class AttrValueParser
 {
 public:
-    void ParseAttrInterval()
+    using T = decltype(std::declval<AttrInterval>().GetRandom());
+    template<typename Base> static void ParseValue(AttrInterval& attr, Base&, const char* lowerName, const char* upperName)
     {
-        ParseAttrValue();
-    }
-
-protected:
-    virtual void ParseAttrValue()
-    {
-        std::cout << "Base Parser" << std::endl;
+        std::string s = "100";
+        std::cout << StringConvert<T>(s) << std::endl;
     }
 };
 
+//////////////////////////////////////////////////////////////////////////
 
-template<class T, class ArrtParser = AttrIntervalParser<AttrInterval<T>>>
-class AttrSection : public AttrInterval<T>
-{
-public:
-    void Parse()
-    {
-        mParser.ParseAttrInterval();
-    }
-
-protected:
-    ArrtParser mParser;
-};
-
-template<typename T, class ArrtParser = AttrIntervalParser<AttrInterval<T>>> 
+template<typename T>
 struct SectionAttrs
 {
-    AttrSection<T, ArrtParser>   keyAttr;
+    AttrInterval<T>  keyAttr;
 };
 
-template<class SectT, 
-    typename AttrT = decltype(std::declval<SectT>().keyAttr),
-    typename BaseT = decltype(std::declval<AttrT>().GetRandom())>
+template<class SectT, class Parser>
 class SectionGroup
 {
 public:
-    const SectT* GetSection(BaseT t) const
-    {
-        if (!mAttrsList.empty())
-        {
-            return &(mAttrsList.front());
-        }
-        return nullptr;
-    }
+    using AttrT = decltype(std::declval<SectT>().keyAttr);
+    using BaseT = decltype(std::declval<AttrT>().GetRandom());
 
-    void PushAttribute(SectT &attrs)
+    template<typename... Args> void  ParseNewAttrValue(Args... args)
     {
-        mAttrsList.emplace_back(attrs);
+        AttrInterval<BaseT> newAttr;
+        Parser::ParseValue(newAttr, args...);
     }
-
-    void PrintBaseType()
-    {
-        std::cout << "Base type: " << typeid(BaseT).name() << std::endl;
-    }
-
-private:
-    std::list<SectT> mAttrsList;
 };
-
-
-/*
-template<typename AttrInterval>
-class AttrIntervalParserDerive : public AttrIntervalParser<AttrInterval>
-{
-protected:
-    void ParseAttrValue() override
-    {
-        std::cout << "Derive Parser" << std::endl;
-    }
-};*/
 
 void TestAttrs();

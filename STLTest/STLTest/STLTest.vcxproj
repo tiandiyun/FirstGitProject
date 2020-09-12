@@ -93,6 +93,7 @@
     <ClInclude Include="STLSrc\TestDeque.h" />
     <ClInclude Include="STLSrc\CustomRandom.h" />
     <ClInclude Include="STLSrc\TestException.h" />
+    <ClInclude Include="STLSrc\TestIntegralConstant.h" />
     <ClInclude Include="STLSrc\TestIterator.h" />
     <ClInclude Include="STLSrc\TestMap.h" />
     <ClInclude Include="STLSrc\TestSet.h" />
@@ -125,6 +126,7 @@
     <ClCompile Include="STLSrc\TestDeque.cpp" />
     <ClCompile Include="STLSrc\CustomRandom.cpp" />
     <ClCompile Include="STLSrc\TestException.cpp" />
+    <ClCompile Include="STLSrc\TestIntegralConstant.cpp" />
     <ClCompile Include="STLSrc\TestIterator.cpp" />
     <ClCompile Include="STLSrc\TestMap.cpp" />
     <ClCompile Include="STLSrc\TestSet.cpp" />

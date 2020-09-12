@@ -6,6 +6,8 @@
 #include <locale>
 #include <iterator>
 
+#pragma warning(disable : 4996)
+
 void TestRep()
 {
     /*std::chrono::duration<int> two(2);
@@ -149,4 +151,28 @@ void try_get_time(const std::string& s)
 //         std::copy(ret, {}, std::ostreambuf_iterator<char>(std::cout));
 //         std::cout << '\n';
     }
+}
+
+void TestTimeGet()
+{
+    time_t futureTime = 2531318400;
+    tm* futureTm = gmtime(&futureTime);
+
+    std::istringstream ss("2030-3-20 09:10:20");
+    tm when = { 0 };
+    ss >> std::get_time(&when, "%Y-%m-%d %H:%M:%S");
+    if (ss.fail())
+    {
+        std::cout << "error" << std::endl;
+        return;
+    }
+    std::cout << ss.str() << std::endl;
+}
+
+long long GetCurrentMillisecond()
+{
+    auto nowpt = std::chrono::system_clock::now();
+    auto nowdt = nowpt.time_since_epoch();
+    auto nowms = std::chrono::duration_cast<std::chrono::milliseconds>(nowdt);
+    return nowms.count();
 }
