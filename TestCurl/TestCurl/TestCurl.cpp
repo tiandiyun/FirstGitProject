@@ -31,8 +31,9 @@ size_t GetContentLengthFunc(void *ptr, size_t size, size_t nmemb, void *stream)
 size_t WriteCallback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	char* cptr = (char*)ptr;
-	stringstream& ss = *(stringstream*)stream;
-	ss << cptr;
+	string& buffer = *(string*)stream;
+	size_t totalSize = size * nmemb;
+	buffer.append(cptr, totalSize);
 	return 0;
 }
 
@@ -54,16 +55,16 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 
 		long filesize = 0;
-		stringstream ss;
+		string buffer;
 
 		curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, GetContentLengthFunc);
 		curl_easy_setopt(curlHandle, CURLOPT_HEADERDATA, &filesize);
-		curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &ss);
+		curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &buffer);
 		curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, WriteCallback);
 		curl_easy_setopt(curlHandle, CURLOPT_URL, "https://www.baidu.com/");
 		CURLcode code = curl_easy_perform(curlHandle);
 		cout << "curl code " << code << endl;
-		cout << ss.str();
+		cout << buffer;
 
 		curl_easy_cleanup(curlHandle);
 	} while (0);
