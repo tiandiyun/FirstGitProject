@@ -28,13 +28,13 @@ size_t GetContentLengthFunc(void *ptr, size_t size, size_t nmemb, void *stream)
 	return size * nmemb;
 }
 
-size_t WriteCallback(void *ptr, size_t size, size_t nmemb, void *stream)
+size_t DataCallback(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	char* cptr = (char*)ptr;
 	string& buffer = *(string*)stream;
 	size_t totalSize = size * nmemb;
 	buffer.append(cptr, totalSize);
-	return 0;
+    return totalSize;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
@@ -54,17 +54,24 @@ int _tmain(int argc, _TCHAR* argv[])
 			break;
 		}
 
-		long filesize = 0;
-		string buffer;
+        string headerBuf;
+		string writeBuf;
 
-		curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, GetContentLengthFunc);
+        /*long filesize = 0;
 		curl_easy_setopt(curlHandle, CURLOPT_HEADERDATA, &filesize);
-		curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &buffer);
-		curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, WriteCallback);
-		curl_easy_setopt(curlHandle, CURLOPT_URL, "https://www.baidu.com/");
+		curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, GetContentLengthFunc);*/
+
+        curl_easy_setopt(curlHandle, CURLOPT_HEADERDATA, &headerBuf);
+        curl_easy_setopt(curlHandle, CURLOPT_HEADERFUNCTION, DataCallback);
+		curl_easy_setopt(curlHandle, CURLOPT_WRITEDATA, &writeBuf);
+		curl_easy_setopt(curlHandle, CURLOPT_WRITEFUNCTION, DataCallback);
+		curl_easy_setopt(curlHandle, CURLOPT_URL, "http://127.0.0.1:8800/api/confcenter/wbmnt/query/bwlist");
+        //curl_easy_setopt(curlHandle, CURLOPT_URL, "https://www.baidu.com/");
 		CURLcode code = curl_easy_perform(curlHandle);
-		cout << "curl code " << code << endl;
-		cout << buffer;
+
+        cout << "CURL CODE: " << code << endl << endl;
+        cout << "HEADER BUFFER: " << endl << headerBuf << endl << endl;
+        cout << "WRITE BUFFER: " << endl << writeBuf << endl << endl;
 
 		curl_easy_cleanup(curlHandle);
 	} while (0);

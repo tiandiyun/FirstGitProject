@@ -9,6 +9,7 @@
 #include <string>
 #include <memory>
 #include <cmath>
+#include "TestRegex.h"
 
 uint32_t ExchangeTicketByLayer(uint32_t layer, uint32_t betCoin)
 {
@@ -25,8 +26,7 @@ uint32_t ExchangeTicketByLayer(uint32_t layer, uint32_t betCoin)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    auto t = ExchangeTicketByLayer(12, 1000);
-
+    TestRegexSearch();
     system("pause");
 	return 0;
 }

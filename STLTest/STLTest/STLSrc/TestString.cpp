@@ -63,6 +63,16 @@ void TestRFind()
     }
 
     std::cout << cfgLabel.c_str() << std::endl;
+
+
+    const std::string path = "/root/config";
+    pos = path.find_last_of('/');
+    auto leaf = path.substr(pos + 1);
+    std::cout << leaf << '\n';
+
+    pos = path.find_last_of("\\/66");
+    leaf = path.substr(pos + 1);
+    std::cout << leaf << '\n';
 }
 
 void TestTrimSpace()

@@ -31,7 +31,8 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    TestAttrs();
+    TestRFind();
+
     system("pause");
     return 0;
 }
