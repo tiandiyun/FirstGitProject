@@ -3,6 +3,10 @@
 #include <iostream>
 #include <string>
 
+
+#define _SR_INDEX_MAX (size_t)(-1)
+
+
 std::string getStr()
 {
 	std::string temp = "124432";
@@ -93,4 +97,130 @@ void TestTrimSpace()
     std::string tmp;
     int len = tmp.length();
     auto c = tmp[len];
+}
+
+static void ParseSpecialKeys(const std::string& rawStr)
+{
+	auto pos = rawStr.find(":");
+	if (pos == std::string::npos)
+	{
+		return;
+	}
+
+	std::string& key = rawStr.substr(0, pos);
+	std::cout << key << " : ";
+
+	int  index = 0;
+	int  interFlag = 0;
+	auto end = rawStr.length();
+	auto prev = pos + 1;
+	auto next = prev;
+	for (; prev < end; prev = next + 1)
+	{
+		next = rawStr.find_first_of("[,]", prev);
+		if (next != std::string::npos)
+		{
+			char c = rawStr[next];
+			if (c == '[')
+			{
+				if (interFlag != 0)
+				{
+					return;
+				}
+
+				++interFlag;
+			}
+			else if (c == ']')
+			{
+				if (interFlag != 2)
+				{
+					return;
+				}
+
+				++interFlag;
+			}
+			else
+			{
+				if (prev == next)
+				{
+					continue;
+				}
+
+				if (interFlag > 1)
+				{
+					return;
+				}
+
+				if (interFlag == 1)
+				{
+					++interFlag;
+				}
+			}
+		} 
+		else
+		{
+			if (interFlag > 0)
+			{
+				return;
+			}
+
+			next = end;
+		}
+
+		if (interFlag == 1)
+		{
+			continue;
+		}
+
+		int value = 0;
+		try
+		{
+			std::string& strv = rawStr.substr(prev, next - prev);
+			if (strv == "+")
+			{
+				value = _SR_INDEX_MAX;
+			}
+			else
+			{
+				value = std::stoi(strv);
+			}
+		}
+		catch (std::exception e)
+		{
+			return;
+		}
+
+		if (interFlag == 0 || interFlag == 2)
+		{
+			index = value;
+			std::cout << index << ", ";
+		}
+		else if (interFlag == 3)
+		{
+			interFlag = 0;
+			int endIdx = value;
+			//TODO
+			std::cout << "[" << index << ", " << endIdx << "]" << ",";
+		}
+		else
+		{
+			return;
+		}	
+	}
+
+	std::cout << std::endl;
+}
+
+void TestParseRedisKey()
+{
+	const char* SRSpecialKeys[] = {
+		"BRPOPLPUSH:0,1",
+		"SINTERSTORE:[0,+]",
+		"SUNIONSTORE:0, [3,+]"	// TODO: tianyun ÓÐÎÊÌâ
+	};
+
+	for (const char* key : SRSpecialKeys)
+	{
+		ParseSpecialKeys(key);
+	}
 }

@@ -27,11 +27,16 @@
 #include "STLSrc/Attribute.h"
 #include "STLSrc/TestIntegralConstant.h"
 #include <stdio.h>
+#include <set>
+
+using namespace std;
 
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    TestRFind();
+	//TestTraversListByIterator();
+
+	TestParseRedisKey();
 
     system("pause");
     return 0;
