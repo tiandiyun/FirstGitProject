@@ -63,6 +63,39 @@ WOCIterator RandomPickWeightedIterator(WeightedObjContainer& ct)
     return RandomPickWeightedIterator(ct.begin(), ct.end());
 }
 
+template < typename WeightedObjMap,
+	typename WOMapIt = decltype(std::declval<WeightedObjMap>().begin()),
+	typename WT = decltype(std::declval<WeightedObjMap::mapped_type>().weight)
+>
+WOMapIt RandomPickWeightedMapIt(WeightedObjMap& wtMap, WT wtSum)
+{
+	if (wtMap.empty())
+	{
+		return wtMap.end();
+	}
+
+	WT defaultValue = AttrDifference<WT>::Default();
+	WT markV = AttrRandom<WT>::Random(defaultValue + AttrDifference<WT>::MinDiff(), wtSum);
+	WOMapIt it = wtMap.begin();
+	for (; it != wtMap.end() && markV > it->second.weight; markV -= (it++)->second.weight);
+	return it;
+}
+
+template < typename WeightedObjMap,
+	typename WOMapIt = decltype(std::declval<WeightedObjMap>().begin()),
+	typename WT = decltype(std::declval<WeightedObjMap::mapped_type>().weight)
+>
+WOMapIt RandomPickWeightedMapIt(WeightedObjMap& wtMap)
+{
+	WT wtSum = AttrDifference<WT>::Default();
+	for (auto bit = wtMap.begin(); bit != wtMap.end(); ++bit)
+	{
+		wtSum += bit->second.weight;
+	}
+	return RandomPickWeightedMapIt(wtMap, wtSum);
+}
+
+
 struct TestObject : public WeightedObj<int>
 {
     TestObject(int w, int v) : WeightedObj(w), customV(v){}
@@ -140,3 +173,5 @@ int TestVarParamsInRecursionFuction();
 void TestVarParamsPartialSpecialization();
 
 void TestTemplateSpecialize();
+
+void TestRandomWeightMap();

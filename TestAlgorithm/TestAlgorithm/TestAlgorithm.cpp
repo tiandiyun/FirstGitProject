@@ -26,7 +26,11 @@ uint32_t ExchangeTicketByLayer(uint32_t layer, uint32_t betCoin)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-    TestRegexSearch();
+    //TestRegexMatch();
+	//CompareMatchAndSearch();
+	//RegexSearchAll();
+	TestRegexUtil();
+
     system("pause");
 	return 0;
 }

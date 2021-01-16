@@ -93,8 +93,16 @@ void TestSharePtr()
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//TestProgressTime();
+    //PtimeFromString();
+    
+    std::time_t nt = time(NULL);
+    std::tm ntm = *std::localtime(&nt);
 
-    TestDateTime();
+    ntm.tm_mon = 0;
+    ntm.tm_mday = 1;
+    nt = std::mktime(&ntm);
+
+
 
 	system("pause");
 	return 0;

@@ -2,6 +2,7 @@
 #include "TestTemplate.h"
 #include "Timer.h"
 #include "..\DataStruct.h"
+#include <map>
 #include <vector>
 #include <stdint.h>
 
@@ -296,4 +297,39 @@ void TestTemplateSpecialize()
 
     TempStrComp("hi", "world");
     TempStrComp("wo", "caoaa");
+}
+
+void TestRandomWeightMap()
+{
+	std::map<int, TestObject> itMap;
+	itMap.emplace(std::make_pair(0, TestObject{ 100, 10 }));
+	itMap.emplace(std::make_pair(1, TestObject{ 200, 20 }));
+	itMap.emplace(std::make_pair(2, TestObject{ 300, 30 }));
+	itMap.emplace(std::make_pair(3, TestObject{ 0, 0 }));
+
+	/*auto it = RandomPickWeightedMapIt(itMap);
+	if (it != itMap.end())
+	{
+		std::cout << it->first << ": " << it->second.weight << std::endl;
+	}*/
+	
+	const std::map<int, TestObject>& itMapRef = itMap;
+	
+	timer tmr;
+
+	int count = 1000000;
+	std::map<int, int> selectTimes;
+	for (int i = 0; i < count; ++i)
+	{
+		auto it = RandomPickWeightedMapIt(itMap, 600);
+		++selectTimes[it->first];
+	}
+
+	std::cout << "cost time: " << tmr.elapsed() << std::endl;
+	
+	for (const auto& topair : itMap)
+	{
+		float prob = selectTimes[topair.first] * 1.f / count;
+		std::cout << topair.first << " : " << prob << std::endl;
+	}	
 }

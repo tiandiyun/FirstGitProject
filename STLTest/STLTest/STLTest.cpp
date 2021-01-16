@@ -27,16 +27,14 @@
 #include "STLSrc/Attribute.h"
 #include "STLSrc/TestIntegralConstant.h"
 #include <stdio.h>
-#include <set>
+
+#pragma warning(disable : 4996)
 
 using namespace std;
 
-
 int _tmain(int argc, _TCHAR* argv[])
 {
-	//TestTraversListByIterator();
-
-	TestParseRedisKey();
+	TestRandomWeightMap();
 
     system("pause");
     return 0;

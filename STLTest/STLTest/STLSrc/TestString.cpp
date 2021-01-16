@@ -2,6 +2,7 @@
 #include "TestString.h"
 #include <iostream>
 #include <string>
+#include <algorithm>
 
 
 #define _SR_INDEX_MAX (size_t)(-1)
@@ -99,6 +100,14 @@ void TestTrimSpace()
     auto c = tmp[len];
 }
 
+
+void TestStringRemove()
+{
+    std::string hehe = "  11 22  33    4";
+    auto it = std::remove(hehe.begin(), hehe.end(), ' ');
+    hehe.erase(it, hehe.end());
+}
+
 static void ParseSpecialKeys(const std::string& rawStr)
 {
 	auto pos = rawStr.find(":");
@@ -110,8 +119,8 @@ static void ParseSpecialKeys(const std::string& rawStr)
 	std::string& key = rawStr.substr(0, pos);
 	std::cout << key << " : ";
 
-	int  index = 0;
 	int  interFlag = 0;
+	unsigned int  index = 0;
 	auto end = rawStr.length();
 	auto prev = pos + 1;
 	auto next = prev;
@@ -176,13 +185,15 @@ static void ParseSpecialKeys(const std::string& rawStr)
 		try
 		{
 			std::string& strv = rawStr.substr(prev, next - prev);
+            strv.erase(std::remove(strv.begin(), strv.end(), ' '), strv.end());
+
 			if (strv == "+")
 			{
 				value = _SR_INDEX_MAX;
 			}
 			else
 			{
-				value = std::stoi(strv);
+				value = static_cast<unsigned int>(std::stoi(strv));
 			}
 		}
 		catch (std::exception e)
@@ -193,12 +204,17 @@ static void ParseSpecialKeys(const std::string& rawStr)
 		if (interFlag == 0 || interFlag == 2)
 		{
 			index = value;
-			std::cout << index << ", ";
+
+            if (interFlag == 0)
+            {
+			    std::cout << index << ", ";
+            }
 		}
 		else if (interFlag == 3)
 		{
 			interFlag = 0;
-			int endIdx = value;
+            unsigned int endIdx = value;
+
 			//TODO
 			std::cout << "[" << index << ", " << endIdx << "]" << ",";
 		}
@@ -214,8 +230,8 @@ static void ParseSpecialKeys(const std::string& rawStr)
 void TestParseRedisKey()
 {
 	const char* SRSpecialKeys[] = {
-		"BRPOPLPUSH:0,1",
-		"SINTERSTORE:[0,+]",
+		"BRPOPLPUSH:0 , 1",
+		"SINTERSTORE:[0, + ]",
 		"SUNIONSTORE:0, [3,+]"	// TODO: tianyun ÓÐÎÊÌâ
 	};
 

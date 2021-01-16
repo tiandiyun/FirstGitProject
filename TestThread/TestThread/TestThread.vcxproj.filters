@@ -27,6 +27,15 @@
     <ClInclude Include="TestLock.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="TestAtomic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +45,15 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="TestLock.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TestAtomic.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiThread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomThread.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,6 +5,8 @@
 #include <iostream>
 #include <ctime>
 #include "TestLock.h"
+#include "TestAtomic.h"
+#include "MultiThread.h"
 
 void init_number_generator()
 {
@@ -22,7 +24,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
     // TestUniqLock();
 
-    TestConditionUniqLock();
+    // TestConditionUniqLock();
+
+	// TestAtomicExchange();
+
+	// TestMultiThreadStatic();
+
+    TestCustomThread();
 
     system("pause");
 	return 0;

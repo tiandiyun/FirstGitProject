@@ -8,14 +8,14 @@
 void PtimeFromString()
 {
     //boost::posix_time::ptime pt = boost::posix_time::time_from_string("2002-01-20 23:59:59.000");
-    boost::posix_time::ptime pt = boost::posix_time::time_from_string("2002-01-31 25");
+    boost::posix_time::ptime pt = boost::posix_time::time_from_string("2002-01-31 13");
     boost::posix_time::ptime pt2 = boost::posix_time::time_from_string("2003-01-31 25");
 
     boost::posix_time::time_duration td = boost::posix_time::duration_from_string("18");
-    
     //auto tdms = boost::chrono::duration_cast<boost::chrono::milliseconds>(pt2 - pt);
 
     std::cout << "pt: " << pt << std::endl;
+    std::cout << "pt2: " << pt2 << std::endl;
     std::cout << "td: " << td << std::endl;
 
     boost::posix_time::ptime now_pt = boost::posix_time::second_clock::local_time();
@@ -28,7 +28,7 @@ void PtimeFromString()
 
     std::chrono::seconds::rep std_dur = std::chrono::duration_cast<std::chrono::seconds>(stdPt.time_since_epoch()).count();
 
-    boost::gregorian::date d = boost::gregorian::from_string("2020-01-31");
+    boost::gregorian::date d = boost::gregorian::from_string("2020-01-31 08:10:35");
     std::tm dtm = boost::gregorian::to_tm(d);
 
     boost::posix_time::time_duration tds = boost::posix_time::duration_from_string("08:10:35");
@@ -87,7 +87,7 @@ void TestDateTime()
     * This method can be used as an alternative to iterators
     */
 
-    std::time_t begintt = 1585638000;
+    std::time_t begintt = 1580194800;
     boost::posix_time::ptime nowpt = boost::posix_time::second_clock::universal_time();
     auto localNowPt = boost::date_time::c_local_adjustor<boost::posix_time::ptime>::utc_to_local(nowpt);
     std::cout << "now time: " << boost::posix_time::to_simple_string(localNowPt).c_str() << std::endl;
@@ -126,7 +126,14 @@ void TestDateTime()
         while (begDt < nowDt)
         {
             begDt += oneMonth;
+            std::cout << begDt << std::endl;
         }
+
+
+        int yr = begDt.year();
+        int mt = begDt.month();
+        int dy = begDt.day();
+        std::cout << yr << " / " << mt << " / " << dy << std::endl;
     }
 
 #endif

@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <iostream>
+#include <memory>
 
 struct strc
 {
@@ -25,16 +26,70 @@ void TestOperatorOverFlow()
     }
 }
 
+class A
+{
+public:
+    virtual ~A() {}
+
+    void Copy(const A& a)
+    {
+        mData = a.mData;
+    }
+
+    virtual void Show()
+    {
+        std::cout << "A::Show()" << std::endl;
+    }
+
+private:
+    int mData;
+};
+
+class B : public A
+{
+public:
+    virtual void Show()
+    {
+        std::cout << "B::Show()" << std::endl;
+    }
+};
+
 
 int main()
 {
-	
-	//std::cout << sizeof(strc) << std::endl;
-	
-    	//TestOperatorOverFlow();
+	/*std::shared_ptr<A> a = std::make_shared<B>();
+    std::shared_ptr<B> b = std::dynamic_pointer_cast<B>(a);
+    if (b)
+    {
+        b->Show();
+    }
+    else
+    {
+        std::cout << "b is null" << std::endl;
+    }
 
-	bool flag = false;
-	std::cout << flag << std::endl;
+    a = nullptr;
+    b = std::dynamic_pointer_cast<B>(a);
+    if (b)
+    {
+        b->Show();
+    }
+    else
+    {
+        std::cout << "b is null" << std::endl;
+    }*/
+
+    A* a = nullptr;
+    B* b = dynamic_cast<B*>(a);
+    if (!b)
+    {
+        std::cout << "b is null" << std::endl;
+    }
+    else
+    {
+        std::cout << "b is not null" << std::endl;
+    }
+    delete a;
 
 	getchar();
 

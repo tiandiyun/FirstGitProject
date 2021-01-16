@@ -15,7 +15,8 @@ std::queue<int>         g_codes;
 bool                    g_done;
 bool                    g_notified;
 
-
+#define  AutoMutex  std::mutex;
+#define  AutoLock  std::unique_lock;
 
 //////////////////////////////////////////////////////////////////////////
 
