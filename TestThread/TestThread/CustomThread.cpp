@@ -12,11 +12,27 @@ CustomThread::CustomThread(PFThreadCallFunc pfn, void *arg) : mBaseThread(pfn, a
 
 #include <unistd.h>
 
-CustomThread::CustomThread(PFThreadCallFunc pfn, void *arg) : mBaseThread(0), mValide(false), mJoinable(true)
+CustomThread::CustomThread(PFThreadCallFunc pfn, void *arg) : mBaseThread(0), mValide(false), mJoinable(false)
 {
     int rslt = pthread_create(&mBaseThread, NULL, pfn, arg);
-    mValide = (rslt != 0);
-    if (rslt != 0)
+    mValide = (rslt == 0);
+    if (mValide)
+    {
+        pthread_attr_t attr;
+        pthread_attr_init(&attr);
+
+        int state;
+        int ret = pthread_attr_getdetachstate(&attr, &state);
+        if (0 == ret)
+        {
+            mJoinable = ((PTHREAD_CREATE_JOINABLE & state) == PTHREAD_CREATE_JOINABLE);
+        }
+        else
+        {
+            cout << "pthread_attr_getdetachstate: " << ret;
+        }
+    }
+    else
     {
         cout << "create thread failed, result: " << rslt << endl;
     }
@@ -27,9 +43,6 @@ CustomThread::CustomThread(PFThreadCallFunc pfn, void *arg) : mBaseThread(0), mV
 CustomThread::~CustomThread()
 {
     mValide = false;
-#ifndef SPTC11
-    mJoinable = false;
-#endif
 }
 
 thrd_t CustomThread::CurrentThreadID()
@@ -77,7 +90,7 @@ thrd_t CustomThread::GetThreadID()
 #endif
 }
 
-bool CustomThread::IsSameThread(const thrd_t& thrdID)
+bool CustomThread::IsSameThread(const thrd_t &thrdID)
 {
 #ifdef SPTC11
     return GetThreadID() == thrdID;
@@ -88,6 +101,11 @@ bool CustomThread::IsSameThread(const thrd_t& thrdID)
 
 bool CustomThread::Joinable()
 {
+    if (!mValide)
+    {
+        return false;
+    }
+    
 #ifdef SPTC11
     return mBaseThread.joinable();
 #else
@@ -97,26 +115,30 @@ bool CustomThread::Joinable()
 
 void CustomThread::Join()
 {
+    if (!mValide)
+    {
+        return;
+    }
+
 #ifdef SPTC11
     mBaseThread.join();
 #else
-    if (mJoinable)
-    {
-        pthread_join(mBaseThread, NULL);
-        mJoinable = false;
-    }
+    pthread_join(mBaseThread, NULL);
+    mJoinable = false;
 #endif
 }
 
 void CustomThread::Detach()
 {
+    if (!mValide)
+    {
+        return;
+    }
+    
 #ifdef SPTC11
     mBaseThread.detach();
 #else
-    if (mJoinable)
-    {
-        pthread_detach(mBaseThread);
-        mJoinable = false;
-    }
+    pthread_detach(mBaseThread);
+    mJoinable = false;
 #endif
 }

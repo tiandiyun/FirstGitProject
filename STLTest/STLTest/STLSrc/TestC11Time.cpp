@@ -6,6 +6,13 @@
 #include <locale>
 #include <iterator>
 
+#include <time.h>
+#ifdef WIN32
+#  include <windows.h>
+#else
+#  include <sys/time.h>
+#endif
+
 #pragma warning(disable : 4996)
 
 void TestRep()
@@ -126,6 +133,29 @@ time_t TimeFromString(const std::string &s, const char* format /*= nullptr*/)
     return mktime(&when);
 }
 
+#ifdef WIN32
+
+static int gettimeofday(struct timeval *tp, void *tzp)
+{
+    SYSTEMTIME wst;
+    GetLocalTime(&wst);
+
+    struct tm nowtm;
+    nowtm.tm_year = wst.wYear - 1900;
+    nowtm.tm_mon = wst.wMonth - 1;
+    nowtm.tm_mday = wst.wDay;
+    nowtm.tm_hour = wst.wHour;
+    nowtm.tm_min = wst.wMinute;
+    nowtm.tm_sec = wst.wSecond;
+    nowtm.tm_isdst = -1;
+
+    time_t clock = mktime(&nowtm);
+    tp->tv_sec = clock;
+    tp->tv_usec = wst.wMilliseconds * 1000;
+    return (0);
+}
+
+#endif
 
 void try_get_time(const std::string& s)
 {
@@ -167,6 +197,10 @@ void TestTimeGet()
         return;
     }
     std::cout << ss.str() << std::endl;
+
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    long long millsecs = (long long)tv.tv_sec * 1000 + tv.tv_usec / 1000;
 }
 
 long long GetCurrentMillisecond()
@@ -176,3 +210,4 @@ long long GetCurrentMillisecond()
     auto nowms = std::chrono::duration_cast<std::chrono::milliseconds>(nowdt);
     return nowms.count();
 }
+

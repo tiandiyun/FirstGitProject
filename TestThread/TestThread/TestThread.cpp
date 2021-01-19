@@ -7,6 +7,7 @@
 #include "TestLock.h"
 #include "TestAtomic.h"
 #include "MultiThread.h"
+#include "TimeUtil.h"
 
 void init_number_generator()
 {
@@ -30,7 +31,11 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	// TestMultiThreadStatic();
 
-    TestCustomThread();
+    // TestCustomThread();
+
+    char buf[256];
+    GetDatatimeString(buf, sizeof(buf));
+    std::cout << buf << std::endl;
 
     system("pause");
 	return 0;

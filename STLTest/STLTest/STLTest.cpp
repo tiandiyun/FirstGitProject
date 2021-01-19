@@ -34,7 +34,8 @@ using namespace std;
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	TestRandomWeightMap();
+	//TestRandomWeightMap();
+    TestTimeGet();
 
     system("pause");
     return 0;

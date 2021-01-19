@@ -58,10 +58,30 @@ static void* ThreadCustomCallFunc(void*)
 void TestCustomThread()
 {
     CustomThread t1(ThreadCustomCallFunc, NULL);
-    CustomThread t2(ThreadCustomCallFunc, NULL);
-    CustomThread t3(ThreadCustomCallFunc, NULL);
+//     CustomThread t2(ThreadCustomCallFunc, NULL);
+//     CustomThread t3(ThreadCustomCallFunc, NULL);
+
+    /*if (t1.Joinable())
+    {
+        cout << "t1 is joinable" << endl;
+    }
+    else
+    {
+        cout << "t1 is not joinable" << endl;
+    }*/
 
     t1.Join();
-    t2.Join();
-    t3.Join();
+//     t2.Join();
+//     t3.Join();
+
+    if (t1.Joinable())
+    {
+        cout << "t1 is joinable" << endl;
+    }
+    else
+    {
+        cout << "t1 is not joinable" << endl;
+    }
+
+    CustomThread::SleepForSecs(3);
 }

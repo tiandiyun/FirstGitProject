@@ -80,11 +80,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomThread.h" />
+    <ClInclude Include="DataDefine.h" />
     <ClInclude Include="MultiThread.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TestAtomic.h" />
     <ClInclude Include="TestLock.h" />
+    <ClInclude Include="TimeUtil.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CustomThread.cpp" />
@@ -96,6 +98,7 @@
     <ClCompile Include="TestAtomic.cpp" />
     <ClCompile Include="TestLock.cpp" />
     <ClCompile Include="TestThread.cpp" />
+    <ClCompile Include="TimeUtil.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
