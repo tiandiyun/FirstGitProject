@@ -25,6 +25,10 @@ public:
     static bool MakeDirs(const string &path);
 
     static bool SplitPath(const string &filePath, string& fileDir, string& fileName);
+
+    static bool CurrentDirectory(string &path);
+   
+    static void PathJoin(string &path, const string &subpath);
 };
 
 

@@ -21,10 +21,9 @@ int _tmain(int argc, _TCHAR* argv[])
         }
     }*/
 
-    //std::string fpath = "E:\\Project\\Test\\FirstGitProject\\TestWinApi\\TestWinApi\\test\\test";
-    std::string fpath = "test";
-    std::string fdir, fname;
-    FileUtil::SplitPath(fpath, fdir, fname);
+    std::string fpath = "";
+    std::string subpath = "\\test";
+    FileUtil::PathJoin(fpath, subpath);
 
     system("pause");
 	return 0;

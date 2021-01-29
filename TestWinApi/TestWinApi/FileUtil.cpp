@@ -17,21 +17,27 @@
 #include <sys/stat.h>
 
 /*
-struct stat 
+struct stat
 {
-    _dev_t     st_dev;        //文件所在磁盘驱动器号 
-    _ino_t     st_ino;        //inode，FAT、NTFS文件系统无意义 
-    unsigned short st_mode;   //文件、文件夹的标志 
-    short      st_nlink;      //非NTFS系统上通常为1 
-    short      st_uid;        //UNIX系统上为userid，windows上为0 
-    short      st_gid;        //UNIX系统上为groupid，windows上为0 
-    _dev_t     st_rdev;       //驱动器号，与st_dev相同 
-    _off_t     st_size;       //文件字节数 
-    time_t st_atime;          //上次访问时间 
-    time_t st_mtime;          //上次修改时间 
-    time_t st_ctime;          //创建时间 
+_dev_t     st_dev;        //文件所在磁盘驱动器号
+_ino_t     st_ino;        //inode，FAT、NTFS文件系统无意义
+unsigned short st_mode;   //文件、文件夹的标志
+short      st_nlink;      //非NTFS系统上通常为1
+short      st_uid;        //UNIX系统上为userid，windows上为0
+short      st_gid;        //UNIX系统上为groupid，windows上为0
+_dev_t     st_rdev;       //驱动器号，与st_dev相同
+_off_t     st_size;       //文件字节数
+time_t st_atime;          //上次访问时间
+time_t st_mtime;          //上次修改时间
+time_t st_ctime;          //创建时间
 };
 */
+
+#ifdef WIN32
+#define DIR_SPLIT   '\\'
+#else
+#define DIR_SPLIT   '/'
+#endif
 
 
 bool FileUtil::Exist(const string &path)
@@ -141,4 +147,37 @@ bool FileUtil::SplitPath(const string &filePath, string& fileDir, string& fileNa
     }
 
     return true;
+}
+
+bool FileUtil::CurrentDirectory(string &path)
+{
+    char curPath[256] = {};
+#ifdef WIN32
+    if (0 == GetCurrentDirectory(sizeof(curPath), curPath))
+    {
+        return false;
+    }
+#else
+    if (!getcwd(curPath, sizeof(curPath)))
+    {
+        return false;
+    }
+#endif
+    path = curPath;
+    return true;
+}
+
+void FileUtil::PathJoin(string &path, const string &subpath)
+{
+    if (subpath.empty())
+    {
+        return;
+    }
+
+    if (!path.empty() && path.back() != DIR_SPLIT && subpath.front() != DIR_SPLIT)
+    {
+        path += DIR_SPLIT;
+    }
+
+    path += subpath;
 }
